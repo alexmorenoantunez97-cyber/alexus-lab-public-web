@@ -1,0 +1,235 @@
+/* =========================================================================
+   ALEXUS LAB — Foundation tokens
+   Color, type, spacing, radii, shadows.
+   Aesthetic: monochrome, calm, premium. "Lab" not "trading floor".
+   Numbers earn color; UI does not.
+   ========================================================================= */
+
+/* ---------- Fonts (Google Fonts substitutes — see README) -------------- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* =====================================================================
+     COLOR — Graphite scale (warm-cool neutral, slight green undertone
+     so it sits next to charcoal photography without a magenta cast).
+     ===================================================================== */
+  --ink-1000: #0A0B0C;   /* near-black, used for primary surfaces in dark UI */
+  --ink-900:  #131517;
+  --ink-800:  #1C1F22;
+  --ink-700:  #2A2E33;
+  --ink-600:  #3D4248;
+  --ink-500:  #5A6068;   /* mid-graphite — for secondary body on light */
+  --ink-400:  #828890;
+  --ink-300:  #B4B8BD;
+  --ink-200:  #D8DADC;
+  --ink-150:  #E6E7E8;
+  --ink-100:  #EEEEEF;
+  --ink-50:   #F5F5F4;   /* page bg on light theme */
+  --ink-0:    #FFFFFF;
+
+  /* Paper — slight warm cast, used for "premium document" surfaces */
+  --paper:        #F4F1EC;   /* warm cream */
+  --paper-deep:   #E8E3DA;   /* a step darker */
+  --paper-ink:    #1A1814;   /* ink with warm cast for paper surfaces */
+
+  /* =====================================================================
+     SIGNAL — muted, "cortisol-aware" market colors.
+     Intentionally desaturated. Use sparingly: numbers, candles, deltas.
+     ===================================================================== */
+  --signal-up:        #6F8F75;   /* sage — bullish */
+  --signal-up-soft:   #C6D3C7;
+  --signal-up-deep:   #3F5645;
+  --signal-down:      #B26B5C;   /* clay — bearish */
+  --signal-down-soft: #E5C9C0;
+  --signal-down-deep: #6E3B30;
+  --signal-flat:      var(--ink-400);
+
+  /* Status (UI states, not market data) */
+  --status-info:      #6B7C8C;
+  --status-warn:      #C49152;   /* warm ochre — pre-session checks */
+  --status-alert:     #B26B5C;   /* same clay as down — protocol breach */
+  --status-ok:        #6F8F75;
+
+  /* =====================================================================
+     ACCENT — single brand accent color, used sparingly (live pill, hero CTA,
+     primary action). Yellow is the brand default; green is the alternate.
+     Override at runtime by setting --accent-bright on :root.
+     ===================================================================== */
+  --accent-yellow:      #E8C547;   /* warm gold — racing yellow / lab signal */
+  --accent-yellow-soft: #FFF1B8;
+  --accent-yellow-deep: #8A6E1F;
+  --accent-green:       #7FB069;   /* vital sage — performance, vital signs */
+  --accent-green-soft:  #D6E5CB;
+  --accent-green-deep:  #3F5645;
+
+  --accent-bright:      var(--accent-yellow);   /* default brand accent */
+  --accent-bright-soft: var(--accent-yellow-soft);
+  --accent-bright-deep: var(--accent-yellow-deep);
+  /* For text contrast against --accent-bright (ink works for both yellow & green) */
+  --on-accent: var(--ink-1000);
+
+  /* =====================================================================
+     SEMANTIC — light theme defaults
+     ===================================================================== */
+  --bg:           var(--paper);
+  --bg-elev:      var(--ink-0);
+  --bg-deep:      var(--paper-deep);
+  --fg:           var(--paper-ink);
+  --fg-muted:     var(--ink-500);
+  --fg-faint:     var(--ink-400);
+  --line:         rgba(26, 24, 20, 0.10);
+  --line-strong:  rgba(26, 24, 20, 0.22);
+  --accent:       var(--paper-ink);     /* accent is ink — monochromatic */
+  --accent-fg:    var(--paper);
+
+  /* =====================================================================
+     TYPE — three families
+     - "display": Playfair Display (high-contrast Didone — wordmark DNA)
+     - "sans":    DM Sans (clean geometric, wide tracking friendly)
+     - "mono":    JetBrains Mono (data, numbers, market reads)
+     ===================================================================== */
+  --font-display: 'Playfair Display', 'Bodoni Moda', 'Times New Roman', serif;
+  --font-sans:    'DM Sans', 'Söhne', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Type scale — modular, 1.250 minor third */
+  --t-eyebrow:    0.72rem;   /* 11.5 — uppercase tracked */
+  --t-micro:      0.78rem;   /* 12.5 — meta */
+  --t-small:      0.875rem;  /* 14 */
+  --t-body:       1rem;      /* 16 */
+  --t-body-lg:    1.125rem;  /* 18 */
+  --t-h6:         1.25rem;
+  --t-h5:         1.5rem;
+  --t-h4:         1.875rem;
+  --t-h3:         2.5rem;
+  --t-h2:         3.25rem;
+  --t-h1:         4.25rem;
+  --t-display:    5.75rem;
+
+  /* Tracking — wide eyebrows are the brand */
+  --track-eyebrow: 0.18em;
+  --track-label:   0.08em;
+  --track-tight:   -0.02em;
+  --track-display: -0.025em;
+
+  --lh-tight:   1.05;
+  --lh-snug:    1.2;
+  --lh-body:    1.55;
+  --lh-loose:   1.7;
+
+  /* =====================================================================
+     SPACING — 4px base
+     ===================================================================== */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-16: 64px;
+  --s-20: 80px;
+  --s-24: 96px;
+  --s-32: 128px;
+
+  /* =====================================================================
+     RADIUS — restrained. Most surfaces are squared or barely-rounded.
+     A circle motif comes from the monogram, not from UI.
+     ===================================================================== */
+  --r-0:    0px;
+  --r-xs:   2px;
+  --r-sm:   4px;
+  --r-md:   8px;
+  --r-lg:   12px;
+  --r-xl:   18px;
+  --r-pill: 999px;
+
+  /* =====================================================================
+     SHADOWS — flat with one subtle, never glow.
+     ===================================================================== */
+  --shadow-0: none;
+  --shadow-1: 0 1px 0 rgba(26,24,20,0.04), 0 1px 2px rgba(26,24,20,0.06);
+  --shadow-2: 0 2px 4px rgba(26,24,20,0.06), 0 8px 24px rgba(26,24,20,0.06);
+  --shadow-3: 0 8px 40px rgba(26,24,20,0.10), 0 2px 8px rgba(26,24,20,0.06);
+
+  /* Inset hairline — the most-used elevation cue */
+  --hairline: inset 0 0 0 1px var(--line);
+  --hairline-strong: inset 0 0 0 1px var(--line-strong);
+
+  /* =====================================================================
+     MOTION — slow, breath-paced. Cortisol-aware.
+     ===================================================================== */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-1: 120ms;
+  --dur-2: 220ms;
+  --dur-3: 420ms;
+  --dur-4: 720ms;
+  --dur-breath: 4000ms;     /* 4s — slow inhale, used in idle/loading states */
+}
+
+/* =====================================================================
+   DARK SURFACE — for "session" UI and full-bleed hero moments.
+   Toggled via [data-theme="dark"] on a wrapper.
+   ===================================================================== */
+[data-theme="dark"] {
+  --bg:           var(--ink-1000);
+  --bg-elev:      var(--ink-900);
+  --bg-deep:      #050506;
+  --fg:           #EEEDEA;
+  --fg-muted:     var(--ink-300);
+  --fg-faint:     var(--ink-400);
+  --line:         rgba(255, 255, 255, 0.08);
+  --line-strong:  rgba(255, 255, 255, 0.18);
+  --accent:       #EEEDEA;
+  --accent-fg:    var(--ink-1000);
+}
+
+/* =====================================================================
+   ELEMENT DEFAULTS
+   ===================================================================== */
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 500; letter-spacing: var(--track-tight); line-height: var(--lh-snug); margin: 0; color: var(--fg); }
+h1 { font-size: var(--t-h1); letter-spacing: var(--track-display); line-height: var(--lh-tight); font-weight: 500; }
+h2 { font-size: var(--t-h2); letter-spacing: var(--track-display); line-height: var(--lh-tight); }
+h3 { font-size: var(--t-h3); }
+h4 { font-size: var(--t-h4); }
+h5 { font-size: var(--t-h5); }
+h6 { font-size: var(--t-h6); }
+
+.display { font-family: var(--font-display); font-size: var(--t-display); font-weight: 500; letter-spacing: var(--track-display); line-height: 0.95; }
+
+/* The signature "lab" italic — a serif italic word inset in a sans/serif line */
+.italic-mark { font-family: var(--font-display); font-style: italic; font-weight: 400; }
+
+/* Eyebrow — used everywhere for section labels, like the wordmark subtitle */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--t-eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* Numbers — always tabular, always mono, slightly tighter */
+.num, .num-tabular, code, kbd {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+p { margin: 0 0 var(--s-4); max-width: 64ch; }
+a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+hr { border: 0; border-top: 1px solid var(--line); margin: var(--s-8) 0; }
