@@ -26,30 +26,28 @@ function PFIcon({ name, size = 16 }) {
   }
 }
 
-// ---------- The platform dashboard (desktop layout) -----------------------
+// ---------- The platform dashboard (desktop) — process / psychology -------
 function PlatformDesktop() {
   const nav = [
-    { icon: "grid", label: "Dashboard", active: true },
     { icon: "calendar", label: "Plan semanal" },
-    { icon: "check", label: "Checklist" },
-    { icon: "shield", label: "Riesgo" },
+    { icon: "check", label: "Check-in diario" },
+    { icon: "wave", label: "Evolución", active: true },
+    { icon: "shield", label: "Protocolos" },
+    { icon: "scan", label: "Patrones" },
     { icon: "heart", label: "Diario emocional" },
-    { icon: "scan", label: "Diagnóstico" },
-    { icon: "wave", label: "Patrones" },
     { icon: "discord", label: "Comunidad" }
   ];
-  const checklist = [
-    { t: "Contexto de la semana definido", done: true },
-    { t: "Zonas marcadas en NQ y ES", done: true },
-    { t: "Riesgo máximo del día fijado", done: true },
-    { t: "Sin noticias de alto impacto", done: false },
-    { t: "Estado mental: en calma", done: false }
+  const rows = [
+    { t: "Días siguiendo plan (ejecución buena)", n: 0 },
+    { t: "Días sin romper normas", n: 1 },
+    { t: "Días cumpliendo el riesgo planificado", n: 0 },
+    { t: "Días cumpliendo protocolos activos", n: 0 }
   ];
   return (
-    <div className="pf" role="img" aria-label="Plataforma privada de AlexusLab">
+    <div className="pf" role="img" aria-label="Plataforma de proceso de AlexusLab">
       <div className="pf__top">
-        <div className="pf__brand"><span className="pf__logo-dot" />AlexusLab</div>
-        <div className="pf__top-mid">Semana 23 · 2 — 6 Jun</div>
+        <div className="pf__brand"><span className="pf__logo-dot" />Alexus</div>
+        <div className="pf__top-mid">Progreso · últimos 90 días</div>
         <div className="pf__top-right">
           <span className="pf__pill pf__pill--live"><i />EN VIVO</span>
           <span className="pf__avatar">A</span>
@@ -67,83 +65,62 @@ function PlatformDesktop() {
         <main className="pf__main">
           <div className="pf__mainhead">
             <div>
-              <div className="pf__kicker">Plan de la semana</div>
-              <div className="pf__h">Contexto alcista · operar solo continuaciones</div>
+              <div className="pf__kicker">Dashboard de proceso</div>
+              <div className="pf__h">Tu evolución psicológica</div>
             </div>
-            <span className="pf__chip pf__chip--ok">Riesgo bajo control</span>
+            <span className="pf__chip pf__chip--ok">No es PnL · es proceso</span>
           </div>
 
           <div className="pf__stats">
             <div className="pf__stat">
-              <span className="pf__stat-l">Riesgo máx / día</span>
-              <span className="pf__stat-v">1.0<em>%</em></span>
+              <span className="pf__stat-l">Check-ins</span>
+              <span className="pf__stat-v">1<em>/90</em></span>
             </div>
             <div className="pf__stat">
-              <span className="pf__stat-l">Días operables</span>
-              <span className="pf__stat-v">3</span>
+              <span className="pf__stat-l">Siguiendo plan</span>
+              <span className="pf__stat-v">0<em>%</em></span>
             </div>
             <div className="pf__stat">
-              <span className="pf__stat-l">R objetivo</span>
-              <span className="pf__stat-v pf__stat-v--up">+4R</span>
+              <span className="pf__stat-l">Sin romper normas</span>
+              <span className="pf__stat-v pf__stat-v--up">100<em>%</em></span>
             </div>
             <div className="pf__stat">
-              <span className="pf__stat-l">Foco</span>
-              <span className="pf__stat-v pf__stat-v--sm">Esperar confirmación</span>
+              <span className="pf__stat-l">Riesgo cumplido</span>
+              <span className="pf__stat-v">0<em>%</em></span>
             </div>
           </div>
 
           <div className="pf__grid">
             <div className="pf__card pf__card--wide">
-              <div className="pf__card-h"><PFIcon name="check" size={14} /> Checklist pre-market</div>
-              <ul className="pf__check">
-                {checklist.map((c, i) => (
-                  <li key={i} className={c.done ? 'done' : ''}>
-                    <span className="pf__box">{c.done && <PFIcon name="check" size={11} />}</span>
-                    <span>{c.t}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="pf__check-foot"><span>3 / 5 completado</span><span className="pf__bar"><i style={{ width: "60%" }} /></span></div>
-            </div>
-
-            <div className="pf__card">
-              <div className="pf__card-h"><PFIcon name="shield" size={14} /> Control de riesgo</div>
-              <div className="pf__gauge">
-                <svg viewBox="0 0 120 70">
-                  <path d="M10 64 A50 50 0 0 1 110 64" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="8" strokeLinecap="round" />
-                  <path d="M10 64 A50 50 0 0 1 86 26" fill="none" stroke="var(--accent-green)" strokeWidth="8" strokeLinecap="round" />
-                </svg>
-                <div className="pf__gauge-v"><b>0.6</b><span>de 1.0% usado</span></div>
-              </div>
-              <div className="pf__risk-row"><span>Stop diario</span><b>−1.0%</b></div>
-              <div className="pf__risk-row"><span>Trades hoy</span><b>2 / 3</b></div>
-            </div>
-
-            <div className="pf__card">
-              <div className="pf__card-h"><PFIcon name="heart" size={14} /> Estado emocional</div>
-              <div className="pf__emo">
-                {["Calma", "Tensión", "FOMO", "Euforia"].map((e, i) => (
-                  <span key={i} className={`pf__emo-pill ${i === 0 ? 'on' : ''}`}>{e}</span>
-                ))}
-              </div>
-              <div className="pf__emo-note">Registro de hoy: <b>en calma</b>. Listo para ejecutar el plan.</div>
-            </div>
-
-            <div className="pf__card pf__card--wide">
-              <div className="pf__card-h"><PFIcon name="scan" size={14} /> Diagnóstico de errores · últimos 30 días</div>
-              <div className="pf__diag">
-                {[
-                  { t: "Entradas anticipadas", n: 4, w: "70%", tone: "down" },
-                  { t: "Stop movido por miedo", n: 2, w: "38%", tone: "warn" },
-                  { t: "Operar día no planificado", n: 1, w: "18%", tone: "ok" }
-                ].map((d, i) => (
-                  <div key={i} className="pf__diag-row">
-                    <span className="pf__diag-t">{d.t}</span>
-                    <span className="pf__diag-bar"><i className={`t-${d.tone}`} style={{ width: d.w }} /></span>
-                    <span className="pf__diag-n">{d.n}</span>
+              <div className="pf__card-h"><PFIcon name="shield" size={14} /> Disciplina · últimos 90 días</div>
+              <div className="pf__lrows">
+                {rows.map((r, i) => (
+                  <div key={i} className="pf__lrow">
+                    <span>{r.t}</span><b>{r.n}</b>
                   </div>
                 ))}
               </div>
+            </div>
+
+            <div className="pf__card">
+              <div className="pf__card-h"><PFIcon name="target" size={14} /> Resultados</div>
+              <div className="pf__pills">
+                <span className="pf__rp pf__rp--ok">0 TP</span>
+                <span className="pf__rp pf__rp--down">0 SL</span>
+                <span className="pf__rp">1 BE</span>
+                <span className="pf__rp pf__rp--mute">0 No operé</span>
+              </div>
+              <div className="pf__card-h" style={{ marginTop: 14 }}><PFIcon name="heart" size={14} /> Síntomas marcados</div>
+              <div className="pf__pills">
+                <span className="pf__rp pf__rp--ok">1 Positivos</span>
+                <span className="pf__rp pf__rp--warn">0 Matiz</span>
+                <span className="pf__rp pf__rp--down">0 Negativos</span>
+              </div>
+            </div>
+
+            <div className="pf__card pf__card--wide pf__trap">
+              <div className="pf__card-h"><PFIcon name="bolt" size={14} /> Tu trampa esta semana</div>
+              <p>“Lo aburrido funciona. Si tu plan se siente repetitivo, está calado. No lo cambies por curiosidad.”</p>
             </div>
           </div>
         </main>
@@ -152,50 +129,46 @@ function PlatformDesktop() {
   );
 }
 
-// ---------- The platform on a phone (condensed) ---------------------------
+// ---------- The platform on a phone — weekly plan journal -----------------
 function PlatformPhone() {
-  const check = [
-    { t: "Contexto definido", done: true },
-    { t: "Zonas marcadas", done: true },
-    { t: "Riesgo fijado", done: true },
-    { t: "Mente en calma", done: false }
+  const rules = [
+    "Checklist leída en voz alta antes del primer trade",
+    "Previsión diaria escrita 30 min antes de abrir",
+    "No modificar el riesgo definido el domingo"
   ];
   return (
-    <div className="pfm" role="img" aria-label="Plataforma de AlexusLab en el móvil">
+    <div className="pfm" role="img" aria-label="Plan semanal de AlexusLab en el móvil">
       <div className="pfm__bar">
-        <span className="pfm__brand"><span className="pf__logo-dot" />AlexusLab</span>
+        <span className="pfm__brand"><span className="pf__logo-dot" />Alexus</span>
         <span className="pfm__pill"><i />EN VIVO</span>
       </div>
       <div className="pfm__scroll">
         <div className="pfm__kicker">Plan · Semana 23</div>
-        <div className="pfm__plan">
-          <div className="pfm__plan-h">Contexto alcista</div>
-          <div className="pfm__plan-row"><span>Riesgo máx</span><b>1.0%</b></div>
-          <div className="pfm__plan-row"><span>Días operables</span><b>3</b></div>
-          <div className="pfm__plan-row"><span>Foco</span><b>Confirmación</b></div>
+
+        <div className="pfm__pillar">
+          <div className="pfm__pillar-l">Pilar de la semana</div>
+          <div className="pfm__pillar-v">Disciplina</div>
+          <div className="pfm__pillar-d">Consolidamos los hábitos base.</div>
         </div>
 
         <div className="pfm__card">
-          <div className="pfm__card-h"><PFIcon name="check" size={13} /> Checklist pre-market</div>
-          <ul className="pfm__check">
-            {check.map((c, i) => (
-              <li key={i} className={c.done ? 'done' : ''}>
-                <span className="pfm__box">{c.done && <PFIcon name="check" size={10} />}</span>{c.t}
-              </li>
+          <div className="pfm__card-h"><PFIcon name="check" size={13} /> Las 3 reglas</div>
+          <ol className="pfm__rules">
+            {rules.map((r, i) => (
+              <li key={i}><span className="pfm__rn">{i + 1}</span>{r}</li>
             ))}
-          </ul>
-          <div className="pfm__bar"><i style={{ width: "75%" }} /></div>
+          </ol>
         </div>
 
-        <div className="pfm__card">
-          <div className="pfm__card-h"><PFIcon name="shield" size={13} /> Riesgo de hoy</div>
-          <div className="pfm__risk"><b>0.6%</b><span>de 1.0% · 2 / 3 trades</span></div>
+        <div className="pfm__card pfm__trap">
+          <div className="pfm__card-h"><PFIcon name="bolt" size={13} /> Tu trampa</div>
+          <p>“Lo aburrido funciona. No lo cambies por curiosidad.”</p>
         </div>
       </div>
       <div className="pfm__tabs">
-        <span className="on"><PFIcon name="grid" size={17} /></span>
         <span><PFIcon name="calendar" size={17} /></span>
-        <span><PFIcon name="shield" size={17} /></span>
+        <span className="on"><PFIcon name="wave" size={17} /></span>
+        <span><PFIcon name="heart" size={17} /></span>
         <span><PFIcon name="discord" size={17} /></span>
       </div>
     </div>

@@ -1,0 +1,256 @@
+/* =========================================================================
+   AlexusLab — THEME V6  (light, warm, readable — Chermane-inspired)
+   Loads LAST. Flips the dark-dominant page to a cream/white-dominant design,
+   swaps Playfair → a clean grotesque, keeps the platform showcase + final CTA
+   dark as premium accents.
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap');
+
+:root {
+  --font-display: 'Schibsted Grotesk', system-ui, -apple-system, sans-serif;
+  --font-sans:    'Schibsted Grotesk', system-ui, -apple-system, sans-serif;
+
+  /* warm light surfaces */
+  --t-cream:   #F6F2EA;
+  --t-cream-2: #EFE9DD;
+  --t-white:   #FFFFFF;
+  --t-ink:     #1B1813;   /* near-black warm */
+  --t-ink-2:   #4A4339;   /* body */
+  --t-ink-3:   #8A8073;   /* muted */
+  --t-line:    rgba(27, 24, 19, 0.10);
+  --t-line-2:  rgba(27, 24, 19, 0.20);
+  --t-green:   #5E8C4A;   /* a touch deeper for contrast on light */
+  --t-green-deep: #3F5F31;
+}
+
+/* ---------- base ---------------------------------------------------------- */
+html, body { background: var(--t-cream); color: var(--t-ink); }
+.page { background: var(--t-cream); }
+
+/* Headlines clean + dark by default */
+.headline, h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; }
+/* Force ink on light surfaces — beats styles.css `.section:not(.section--paper) h1..h4`
+   and `.headline{color:#F2F1EE}` which assume a dark page. Dark showcase
+   sections (platform + final CTA) are re-lightened further down. */
+.headline,
+h1, h2, h3, h4, h5, h6,
+.section:not(.section--paper) h1,
+.section:not(.section--paper) h2,
+.section:not(.section--paper) h3,
+.section:not(.section--paper) h4,
+.hero--platform .hero__h1 { color: var(--t-ink); }
+.headline .it, .it { font-style: italic; font-weight: 600; }
+.headline .accent, .accent { color: var(--t-green); }
+.eyebrow { color: var(--t-ink-3); font-weight: 600; }
+.eyebrow::before { background: var(--t-ink-3); }
+.sub { color: var(--t-ink-2); }
+
+/* ---------- NAV (light glass) -------------------------------------------- */
+.nav {
+  background: rgba(246, 242, 234, 0.82);
+  border-bottom: 1px solid var(--t-line);
+}
+.nav__links a { color: var(--t-ink-2); font-weight: 500; }
+.nav__links a:hover { color: var(--t-ink); }
+.nav__login { color: var(--t-ink); border-color: var(--t-line-2); }
+.nav__login:hover { border-color: var(--t-ink); color: var(--t-ink); }
+.nav__cta { background: var(--t-green); color: #fff; }
+.nav__cta:hover { background: #517d40; }
+.nav__burger span { background: var(--t-ink); }
+.nav__drawer { background: rgba(246, 242, 234, 0.98); border-bottom: 1px solid var(--t-line); }
+.nav__drawer a { color: var(--t-ink); border-bottom: 1px solid var(--t-line); }
+.nav__drawer-login { color: var(--t-ink) !important; }
+.nav__drawer-cta { color: var(--t-green) !important; }
+
+/* ---------- TOP BANNER (solid green, clear offer) ------------------------ */
+.top-banner {
+  background: var(--t-green);
+  border-bottom: 0;
+  color: #fff;
+}
+.top-banner__pulse { background: linear-gradient(100deg, transparent, rgba(255,255,255,0.18) 45%, transparent 60%); }
+.top-banner__text b { color: #fff; }
+.top-banner__text .sep { color: rgba(255,255,255,0.5); }
+.top-banner__text .price { color: #fff; }
+.top-banner__text .strike { color: rgba(255,255,255,0.7); }
+.top-banner__text .strike::after { background: rgba(255,255,255,0.8); }
+.top-banner__cta { background: #fff; color: var(--t-green-deep); }
+.top-banner__close { color: rgba(255,255,255,0.8); }
+.top-banner__close:hover { background: rgba(255,255,255,0.18); color: #fff; }
+
+/* ---------- BUTTONS ------------------------------------------------------- */
+.btn--primary { background: var(--t-green); color: #fff; box-shadow: 0 8px 22px rgba(94,140,74,0.22); }
+.btn--primary:hover { background: #517d40; box-shadow: 0 12px 30px rgba(94,140,74,0.32); }
+.btn--ghost { color: var(--t-ink); border: 1px solid var(--t-line-2); }
+.btn--ghost:hover { background: rgba(27,24,19,0.04); border-color: var(--t-ink); }
+
+/* ---------- HERO (cream) -------------------------------------------------- */
+.hero--platform { background: var(--t-cream); border-bottom: 1px solid var(--t-line); }
+.hero--platform__glow {
+  background:
+    radial-gradient(ellipse 900px 520px at 78% 8%, rgba(94,140,74,0.10), transparent 62%),
+    radial-gradient(ellipse 560px 380px at 6% 92%, rgba(94,140,74,0.05), transparent 70%);
+}
+.hero--platform .hero__sub { color: var(--t-ink-2); }
+.hero__micro { color: var(--t-ink-3); }
+.hero__login { color: var(--t-ink-2); }
+.hero__login:hover { color: var(--t-green); }
+.hero__visual-tag { color: var(--t-ink-2); border-color: rgba(94,140,74,0.30); background: rgba(94,140,74,0.07); }
+.hero__h1 .accent { background-image: linear-gradient(transparent calc(100% - 5px), rgba(94,140,74,0.45) 5px); }
+.live-dot { background: var(--t-green); }
+
+/* ---------- VALUE BAR (white strip) -------------------------------------- */
+.valuebar { background: var(--t-white); border-bottom: 1px solid var(--t-line); border-top: 1px solid var(--t-line); }
+.valuebar__item { background: var(--t-cream); border: 1px solid var(--t-line); color: var(--t-ink); }
+.valuebar__ic { background: rgba(94,140,74,0.12); color: var(--t-green); }
+
+/* ---------- PROBLEM (cream) ----------------------------------------------- */
+.problem-section { background: var(--t-cream); }
+.problem-card { background: var(--t-white); border: 1px solid var(--t-line); color: var(--t-ink); }
+.problem-card__x { background: rgba(178,107,92,0.12); color: #B26B5C; }
+
+/* ---------- SOLUTION (white) — already light, just normalize -------------- */
+.solution-section.section--paper { background: var(--t-white); color: var(--t-ink); }
+.solution-card { background: var(--t-cream); border: 1px solid var(--t-line); }
+.solution-card__ic { background: rgba(94,140,74,0.12); color: var(--t-green-deep); }
+.solution-card__title { color: var(--t-ink); }
+.solution-card__desc { color: var(--t-ink-2); }
+.solution-card__n { color: var(--t-ink-3); }
+
+/* ---------- PLATFORM (kept DARK — premium showcase) ---------------------- */
+.platform-section { background: linear-gradient(180deg, #14171C 0%, #0C0E12 100%); }
+.section.platform-section .headline,
+.section.platform-section h1, .section.platform-section h2,
+.section.platform-section h3, .section.platform-section h4 { color: #F6F2EA; }
+.platform-section .eyebrow { color: #9CA796; }
+.platform-section .eyebrow::before { background: #9CA796; }
+.platform-section .sub { color: #C9CCC4; }
+.platform-feat { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.10); color: #EDEAE3; }
+.platform-feat__ic { background: rgba(127,176,105,0.14); color: #8FBE74; }
+.platform-login { color: #C9CCC4; border-color: rgba(255,255,255,0.18); }
+.platform-login:hover { border-color: rgba(143,190,116,0.6); color: #8FBE74; }
+
+/* ---------- COMMUNITY (cream) -------------------------------------------- */
+.community-section.section--paper { background: var(--t-cream); color: var(--t-ink); }
+.community-copy .sub { color: var(--t-ink-2); }
+.community-list li { color: var(--t-ink-2); }
+.community-list__ic { background: rgba(94,140,74,0.14); color: var(--t-green-deep); }
+
+/* ---------- DIRECTOS (white) --------------------------------------------- */
+.directos-section { background: var(--t-white); }
+.directos-card { background: var(--t-cream); border: 1px solid var(--t-line); color: var(--t-ink); }
+.directos-card__ic { background: rgba(94,140,74,0.10); color: var(--t-green); }
+
+/* ---------- INCLUYE (cream) ---------------------------------------------- */
+.incluye-section.section--paper { background: var(--t-cream); color: var(--t-ink); }
+.incluye-list li { background: var(--t-white); border: 1px solid var(--t-line); color: var(--t-ink-2); }
+.incluye-list__ic { background: rgba(94,140,74,0.14); color: var(--t-green-deep); }
+
+/* ---------- PARA QUIEN (white) ------------------------------------------- */
+.paraquien-section { background: var(--t-white); }
+.paraquien__col--si { background: rgba(94,140,74,0.06); border-color: rgba(94,140,74,0.32); }
+.paraquien__col--no { background: var(--t-cream); border-color: var(--t-line); }
+.paraquien__col--si .paraquien__label { color: var(--t-green-deep); }
+.paraquien__col--no .paraquien__label { color: #B26B5C; }
+.paraquien li { color: var(--t-ink-2); }
+.paraquien__col--si li .icon { color: var(--t-green-deep); }
+.paraquien__col--no li .icon { color: #B26B5C; }
+
+/* ---------- REVIEWS (cream) ---------------------------------------------- */
+.reviews-section.section--paper { background: var(--t-cream); color: var(--t-ink); }
+.reviews-section .testi { background: var(--t-white); border: 1px solid var(--t-line); box-shadow: 0 6px 22px rgba(27,24,19,0.05); }
+.reviews-section .testi__quote { color: var(--t-ink); font-style: normal; font-family: var(--font-display); font-weight: 500; }
+.reviews-section .testi__quote::before { color: var(--t-green); }
+.reviews-section .testi__author { border-top: 1px solid var(--t-line); }
+.reviews-section .testi__avatar { background: #EAE3D6; color: var(--t-ink); }
+.reviews-section .testi__name { color: var(--t-ink); }
+.reviews-section .testi__sub { color: var(--t-ink-3); }
+.reviews-section .testi-disclaimer { color: var(--t-ink-3); }
+
+/* ---------- PRICING (white) ---------------------------------------------- */
+.pricing-section { background: var(--t-white); }
+.plan { background: var(--t-cream); border: 1px solid var(--t-line); }
+.plan--featured { background: linear-gradient(180deg, #EAF1E2 0%, var(--t-white) 60%); border-color: rgba(94,140,74,0.45); }
+.plan__ribbon { background: var(--t-green); color: #fff; }
+.plan__name { color: var(--t-ink); }
+.plan__name .it { color: var(--t-ink-3); }
+.plan__sub { color: var(--t-ink-3); }
+.plan__price { color: var(--t-ink); }
+.plan__period { color: var(--t-ink-2); }
+.plan__crossed { color: var(--t-ink-3); }
+.plan__save { color: var(--t-green-deep); }
+.plan__save b { color: var(--t-ink) !important; }
+.plan__features { border-top: 1px solid var(--t-line); }
+.plan__features li { color: var(--t-ink-2); }
+.plan__features .check { color: var(--t-green); }
+.plan__cta .meta { color: var(--t-ink-3); }
+/* override the inline-styled ghost button on the monthly plan */
+.plan .btn--ghost { border: 1px solid var(--t-line-2) !important; color: var(--t-ink) !important; }
+.plan .btn--ghost:hover { background: rgba(27,24,19,0.04) !important; }
+.pricing-micro { color: var(--t-ink-3); }
+
+/* ---------- FAQ (cream) -------------------------------------------------- */
+.faq-section { background: var(--t-cream); }
+.faq { border-top: 1px solid var(--t-line); }
+.faq__item { border-bottom: 1px solid var(--t-line); }
+.faq__item.open { background: rgba(94,140,74,0.04); }
+.faq__q { color: var(--t-ink); font-family: var(--font-display); font-weight: 600; }
+.faq__q:hover { color: var(--t-green); }
+.faq__chev { color: var(--t-ink-2); border: 1px solid var(--t-line-2); }
+.faq__item.open .faq__chev { background: var(--t-green); border-color: var(--t-green); color: #fff; }
+.faq__a > p { color: var(--t-ink-2); }
+
+/* ---------- FINAL CTA (kept DARK closer) --------------------------------- */
+.final-cta { background: linear-gradient(180deg, #14171C 0%, #0C0E12 100%); border-top: 0; }
+.section.final-cta .headline,
+.section.final-cta h1, .section.final-cta h2, .section.final-cta h3 { color: #F6F2EA; }
+.final-cta .eyebrow { color: #9CA796; }
+.final-cta .eyebrow::before { background: #9CA796; }
+.final-cta p { color: #C9CCC4; }
+.cta-micro, .final-cta .cta-micro { color: #9CA796; }
+
+/* ---------- FOOTER (dark anchor) ----------------------------------------- */
+.footer { background: #0C0E12; border-top: 0; }
+
+/* ---------- SCROLL PROGRESS (calmer) ------------------------------------- */
+.scroll-progress { background: var(--t-green); box-shadow: none; }
+
+/* ---------- MOBILE STICKY + TOAST stay dark glass (fine on light) -------- */
+.mobile-cta { background: rgba(20, 23, 28, 0.94); }
+
+/* ---------- section vertical rhythm: a touch tighter --------------------- */
+.problem-section, .directos-section, .paraquien-section, .reviews-section,
+.community-section, .incluye-section, .pricing-section, .faq-section { }
+
+/* ---------- shared CTA micro line ---------------------------------------- */
+.cta-micro { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.02em; color: var(--t-ink-3); }
+.section-cta .cta-micro { color: var(--t-ink-3); }
+.platform-section .section-cta .cta-micro { color: #9CA796; }
+
+/* ---------- HERO ENTRANCE — bulletproof visibility ----------------------
+   The base (platform.css) starts hero copy at opacity:0 and relies on a CSS
+   animation to reveal it. That fails in headless/background contexts and can
+   leave the hero blank. Make the resting state VISIBLE; treat motion as a
+   pure enhancement that only plays when motion is allowed.
+   ------------------------------------------------------------------------ */
+.hero__copy > *,
+.hero__visual {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero__copy > * { animation: heroRise 0.7s var(--ease-out, cubic-bezier(0.16,1,0.3,1)) both !important; }
+  .hero__copy > *:nth-child(1) { animation-delay: 0.04s !important; }
+  .hero__copy > *:nth-child(2) { animation-delay: 0.12s !important; }
+  .hero__copy > *:nth-child(3) { animation-delay: 0.20s !important; }
+  .hero__copy > *:nth-child(4) { animation-delay: 0.28s !important; }
+  .hero__copy > *:nth-child(5) { animation-delay: 0.36s !important; }
+  .hero__visual { animation: heroRise 0.8s var(--ease-out, cubic-bezier(0.16,1,0.3,1)) 0.22s both !important; }
+}
+@keyframes heroRise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+

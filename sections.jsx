@@ -108,13 +108,13 @@ function Solution({ t }) {
 // ---------- 5. Platform (the star) ----------------------------------------
 function PlatformSection({ t }) {
   const features = [
-    { icon: "calendar", label: "Plan semanal del trader" },
-    { icon: "check", label: "Checklist antes de operar" },
-    { icon: "shield", label: "Control de riesgo" },
-    { icon: "heart", label: "Registro emocional" },
-    { icon: "scan", label: "Diagnóstico de errores" },
+    { icon: "calendar", label: "Plan semanal: pilar y reglas" },
+    { icon: "check", label: "Check-in diario de proceso" },
+    { icon: "heart", label: "Diario emocional ante el gráfico" },
+    { icon: "wave", label: "Evolución psicológica (no PnL)" },
+    { icon: "scan", label: "Diagnóstico de patrones repetidos" },
+    { icon: "shield", label: "Protocolos de intervención" },
     { icon: "bolt", label: "Hoja anti-liadas" },
-    { icon: "wave", label: "Seguimiento de patrones" },
     { icon: "discord", label: "Conectada a la comunidad" }
   ];
   return (
@@ -125,7 +125,7 @@ function PlatformSection({ t }) {
           center
           eyebrow="La plataforma"
           title={<>La plataforma privada de <span className="it">AlexusLab.</span></>}
-          sub="Un espacio creado para que tu trading no dependa de la motivación del día, sino de un sistema claro."
+          sub="No es un dashboard de PnL. Es un dashboard de proceso: tu plan semanal, tu check-in diario y tu evolución psicológica frente al gráfico."
         />
 
         <div className="platform-show reveal">

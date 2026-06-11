@@ -74,7 +74,7 @@ function Nav({ t }) {
   return (
     <header className="nav">
       <a href="#top" aria-label="Inicio" className="nav__brand">
-        <img className="nav__logo" src="assets/logo-wordmark-white.png" alt="AlexusLab" />
+        <img className="nav__logo" src="assets/logo-wordmark-black.png" alt="AlexusLab" />
       </a>
       <nav className="nav__links">
         {links.map((l, i) => <a key={i} href={l.href}>{l.label}</a>)}
@@ -107,14 +107,15 @@ function Hero({ t }) {
       <div className="hero__grid">
         <div className="hero__copy">
           <div className="hero__eyebrow eyebrow">
-            <span className="live-dot" /> Plataforma privada · Comunidad · Directos
+            <span className="live-dot" /> La comunidad privada de trading
           </div>
           <h1 className="headline headline--xl hero__h1">
-            Deja de operar <span className="it">solo.</span><br />
-            Ordena tu <span className="it accent">trading.</span>
+            Una comunidad para<br />
+            operar con <span className="it accent">cabeza,</span><br />
+            no en <span className="it">soledad.</span>
           </h1>
           <p className="hero__sub">
-            AlexusLab combina plataforma privada, comunidad en Discord, directos y seguimiento semanal para operar con más estructura, menos impulsividad y mejor gestión de riesgo.
+            Educación en Price Action y psicología, directos de operativa, previsión semanal y una plataforma que analiza tu evolución. Todo en un mismo sitio, contigo cada semana.
           </p>
           <div className="hero__cta-row">
             <a className="btn btn--primary btn--lg" href={t.linkMonth} target="_blank" rel="noopener">
@@ -128,13 +129,9 @@ function Hero({ t }) {
           </a>
         </div>
 
-        <div className="hero__visual">
-          <div className="hero__browser">
-            <BrowserFrame><PlatformDesktop /></BrowserFrame>
-          </div>
-          <div className="hero__phone">
-            <PhoneFrame><PlatformPhone /></PhoneFrame>
-          </div>
+        <div className="hero__visual hero__visual--phone">
+          <PhoneFrame><PlatformPhone /></PhoneFrame>
+          <div className="hero__visual-tag"><span className="live-dot" /> Tu journal de proceso, en el bolsillo</div>
         </div>
       </div>
     </section>

@@ -134,6 +134,24 @@
 .pf__diag-bar .t-ok { background: var(--accent-green); }
 .pf__diag-n { font-family: var(--font-mono); color: #EEEDEA; font-size: 12px; }
 
+/* process list rows */
+.pf__lrows { display: flex; flex-direction: column; }
+.pf__lrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 0; font-size: 12.5px; color: var(--ink-300); border-top: 1px solid var(--line); }
+.pf__lrow:first-child { border-top: 0; }
+.pf__lrow b { font-family: var(--font-mono); font-size: 13px; color: #EEEDEA; }
+
+/* result / symptom pills */
+.pf__pills { display: flex; flex-wrap: wrap; gap: 7px; }
+.pf__rp { font-family: var(--font-mono); font-size: 11px; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-200); }
+.pf__rp--ok { color: var(--accent-green); border-color: rgba(127,176,105,0.4); background: rgba(127,176,105,0.08); }
+.pf__rp--down { color: var(--signal-down); border-color: rgba(178,107,92,0.4); background: rgba(178,107,92,0.08); }
+.pf__rp--warn { color: var(--accent-yellow); border-color: rgba(232,197,71,0.4); background: rgba(232,197,71,0.08); }
+.pf__rp--mute { color: var(--ink-400); }
+
+/* trap quote card */
+.pf__trap p { margin: 0; font-family: var(--font-display); font-style: italic; font-size: 16px; line-height: 1.5; color: #EEEDEA; }
+.pf__trap { border-left: 2px solid var(--accent-yellow); }
+
 /* ---------- Platform phone ------------------------------------------------ */
 .pfm { display: flex; flex-direction: column; min-height: 440px; font-family: var(--font-sans); color: #EEEDEA; background: var(--ink-1000); }
 .pfm__bar { display: flex; align-items: center; justify-content: space-between; padding: 16px 14px 10px; }
@@ -161,6 +179,17 @@
 .pfm__risk span { font-size: 11px; color: var(--ink-400); }
 .pfm__tabs { display: flex; justify-content: space-around; padding: 12px 0 16px; border-top: 1px solid var(--line); color: var(--ink-500); }
 .pfm__tabs .on { color: var(--accent-green); }
+
+/* phone — weekly plan journal */
+.pfm__pillar { background: rgba(127,176,105,0.06); border: 1px solid rgba(127,176,105,0.22); border-radius: 10px; padding: 14px; }
+.pfm__pillar-l { font-family: var(--font-mono); font-size: 8.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-400); margin-bottom: 6px; }
+.pfm__pillar-v { font-family: var(--font-display); font-size: 24px; font-weight: 500; color: var(--accent-green); letter-spacing: -0.01em; margin-bottom: 6px; }
+.pfm__pillar-d { font-size: 11.5px; color: var(--ink-300); line-height: 1.4; }
+.pfm__rules { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
+.pfm__rules li { display: flex; align-items: flex-start; gap: 9px; font-size: 11.5px; color: var(--ink-200); line-height: 1.35; }
+.pfm__rn { flex-shrink: 0; width: 17px; height: 17px; border-radius: 50%; background: rgba(127,176,105,0.14); color: var(--accent-green); font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; display: grid; place-items: center; }
+.pfm__trap { border-left: 2px solid var(--accent-yellow); }
+.pfm__trap p { margin: 0; font-family: var(--font-display); font-style: italic; font-size: 13px; line-height: 1.45; color: #EEEDEA; }
 
 /* =========================================================================
    HERO — platform first
@@ -191,6 +220,18 @@
 .hero__micro { font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-400); letter-spacing: 0.01em; margin: 0; }
 
 .hero__visual { position: relative; }
+.hero__visual--phone {
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  max-width: 300px; margin: 0 auto; width: 100%;
+}
+.hero__visual--phone .phone { max-width: 270px; filter: drop-shadow(0 30px 60px rgba(0,0,0,0.55)); }
+.hero__visual-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.02em;
+  color: var(--ink-300);
+  padding: 7px 14px; border: 1px solid rgba(127,176,105,0.28);
+  background: rgba(127,176,105,0.06); border-radius: 999px;
+}
 .hero__browser { position: relative; z-index: 1; }
 .hero__phone {
   position: absolute;
@@ -356,8 +397,10 @@
   .hero__grid { grid-template-columns: 1fr; gap: 36px; }
   .hero__copy { max-width: none; }
   .hero__phone { width: 130px; right: 0; bottom: -30px; }
+  .hero__visual--phone { max-width: 260px; }
   .valuebar__inner { grid-template-columns: 1fr 1fr; }
   .problem-grid { grid-template-columns: 1fr 1fr; }
+  .directos-grid { grid-template-columns: 1fr 1fr; }
   .solution-grid { grid-template-columns: 1fr; }
   .community-grid { grid-template-columns: 1fr; gap: 36px; }
   .directos-grid { grid-template-columns: 1fr 1fr; }
