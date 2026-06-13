@@ -10,6 +10,8 @@
 :root {
   --font-display: 'Schibsted Grotesk', system-ui, -apple-system, sans-serif;
   --font-sans:    'Schibsted Grotesk', system-ui, -apple-system, sans-serif;
+  /* Kill the monospace "computer" lettering everywhere — route mono → grotesk */
+  --font-mono:    'Schibsted Grotesk', system-ui, -apple-system, sans-serif;
 
   /* warm light surfaces */
   --t-cream:   #F6F2EA;
@@ -253,4 +255,132 @@ h1, h2, h3, h4, h5, h6,
   from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* =========================================================================
+   PRICING V7 — 3 plans, Chermane-style cards (clean, graphic, scannable)
+   ========================================================================= */
+.pricing-section { background: var(--t-white); padding: 72px 24px 88px; }
+.plans3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 1080px;
+  margin: 48px auto 0;
+  align-items: start;
+}
+.plan3 {
+  background: var(--t-cream);
+  border: 1px solid var(--t-line);
+  border-radius: 20px;
+  padding: 26px 24px;
+  display: flex; flex-direction: column;
+}
+.plan3--dark {
+  background: #14171C;
+  border-color: #14171C;
+  box-shadow: 0 24px 60px rgba(20,23,28,0.22);
+}
+.plan3--course {
+  background: linear-gradient(180deg, #EAF1E2 0%, #FCFBF7 70%);
+  border-color: rgba(94,140,74,0.40);
+}
+.plan3__head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 4px; }
+.plan3__name { font-family: var(--font-display); font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: var(--t-ink); margin: 0; }
+.plan3--dark .plan3__name,
+.section .plan3--dark h3.plan3__name { color: #F6F2EA; }
+.plan3__badge {
+  font-family: var(--font-sans); font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em;
+  padding: 4px 9px; border-radius: 999px; white-space: nowrap; flex-shrink: 0;
+}
+.plan3__badge--hot  { background: #E8703A; color: #fff; }
+.plan3__badge--best { background: var(--t-green); color: #fff; }
+.plan3__badge--all  { background: var(--t-green-deep); color: #fff; }
+.plan3__sub { font-size: 13px; color: var(--t-ink-3); margin: 0 0 18px; line-height: 1.4; }
+.plan3--dark .plan3__sub { color: #A9B0A2; }
+.plan3__price { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.plan3__amount { font-family: var(--font-display); font-size: 40px; font-weight: 800; letter-spacing: -0.03em; color: var(--t-ink); line-height: 1; }
+.plan3--dark .plan3__amount { color: #fff; }
+.plan3__per { font-size: 13px; color: var(--t-ink-3); }
+.plan3--dark .plan3__per { color: #A9B0A2; }
+.plan3__was { position: relative; font-family: var(--font-mono); font-size: 14px; color: var(--t-ink-3); margin-left: 2px; }
+.plan3__was::after { content: ""; position: absolute; left: -2px; right: -2px; top: 50%; height: 1.5px; background: #B26B5C; transform: rotate(-8deg); }
+.plan3--dark .plan3__was { color: #8A9183; }
+.plan3__cta {
+  display: block; text-align: center; text-decoration: none;
+  font-family: var(--font-sans); font-weight: 700; font-size: 15px;
+  padding: 15px 18px; border-radius: 999px; margin-bottom: 18px;
+  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.plan3__cta:active { transform: scale(0.98); }
+.plan3__cta--light { background: var(--t-ink); color: #fff; }
+.plan3__cta--light:hover { background: #000; }
+.plan3__cta--solid { background: var(--t-green); color: #fff; box-shadow: 0 10px 24px rgba(94,140,74,0.28); }
+.plan3__cta--solid:hover { background: #6CA052; }
+.plan3__cta--course { background: var(--t-green-deep); color: #fff; }
+.plan3__cta--course:hover { background: #2f4a25; }
+.plan3__note { font-family: var(--font-mono); font-size: 11.5px; color: var(--t-ink-3); margin: -8px 0 16px; line-height: 1.4; }
+.plan3--dark .plan3__note { color: #A9B0A2; }
+.plan3--dark .plan3__note b { color: #8FBE74; }
+.plan3__note--course { color: var(--t-green-deep); }
+.plan3__list { list-style: none; padding: 18px 0 0; margin: 0; display: flex; flex-direction: column; gap: 11px; border-top: 1px solid var(--t-line); }
+.plan3--dark .plan3__list { border-top-color: rgba(255,255,255,0.12); }
+.plan3__list li { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; line-height: 1.45; color: var(--t-ink-2); }
+.plan3--dark .plan3__list li { color: #D2D6CD; }
+.plan3__list li b { color: var(--t-ink); font-weight: 700; }
+.plan3--dark .plan3__list li b { color: #fff; }
+.plan3__ck { flex-shrink: 0; color: var(--t-green); margin-top: 1px; }
+.plan3--dark .plan3__ck { color: #8FBE74; }
+.plan3--course .plan3__ck { color: var(--t-green-deep); }
+.pricing-micro { margin: 36px auto 0; max-width: 56ch; text-align: center; font-family: var(--font-mono); font-size: 12px; color: var(--t-ink-3); }
+
+@media (max-width: 900px) {
+  .plans3 { grid-template-columns: 1fr; max-width: 460px; gap: 16px; }
+  .pricing-section { padding: 56px 20px 72px; }
+  .plan3 { border-radius: 18px; }
+}
+
+/* =========================================================================
+   V7.1 — UPPERCASE CTAs, kill phone overlap, mono is already gone via :root
+   ========================================================================= */
+
+/* All action buttons in caps — they should grab attention & invite the click */
+.btn--primary,
+.nav__cta,
+.mobile-cta__btn,
+.top-banner__cta,
+.plan3__cta,
+.plan__cta .btn {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+}
+
+/* The desktop platform showcase: drop the overlapping phone — it looked bad.
+   The hero already shows the phone; here we want the clean browser dashboard. */
+.platform-show__phone { display: none !important; }
+.platform-show { max-width: 1000px; }
+
+/* Tidy the platform CTA helper link (was mono, now grotesk) — make it a clean pill */
+.platform-login { letter-spacing: 0; }
+
+/* Numbers stay tabular for tidy alignment even in the grotesk */
+.num, .plan3__amount, .plan3__was { font-variant-numeric: tabular-nums; }
+
+/* Course card: no price, schedule-a-call focus */
+.plan3--course .plan3__callrow {
+  display: flex; align-items: baseline; gap: 8px; margin-bottom: 16px;
+}
+.plan3--course .plan3__calllead {
+  font-family: var(--font-display); font-size: 19px; font-weight: 700;
+  letter-spacing: -0.01em; color: var(--t-ink);
+}
+.plan3--course .plan3__callsub { font-size: 13px; color: var(--t-green-deep); font-weight: 600; }
+
+/* Nav logo — bigger & more visible */
+.nav__logo { height: 34px; }
+@media (max-width: 720px) { .nav__logo { height: 30px; } }
+
+/* Phone mockup brand — no clip now that the pill/dot are gone */
+.pfm__brand { white-space: nowrap; overflow: visible; font-family: var(--font-display); font-weight: 600; }
+
 

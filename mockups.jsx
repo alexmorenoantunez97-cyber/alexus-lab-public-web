@@ -46,10 +46,9 @@ function PlatformDesktop() {
   return (
     <div className="pf" role="img" aria-label="Plataforma de proceso de AlexusLab">
       <div className="pf__top">
-        <div className="pf__brand"><span className="pf__logo-dot" />Alexus</div>
+        <div className="pf__brand"><span className="pf__logo-dot" />AlexusLab</div>
         <div className="pf__top-mid">Progreso · últimos 90 días</div>
         <div className="pf__top-right">
-          <span className="pf__pill pf__pill--live"><i />EN VIVO</span>
           <span className="pf__avatar">A</span>
         </div>
       </div>
@@ -139,8 +138,7 @@ function PlatformPhone() {
   return (
     <div className="pfm" role="img" aria-label="Plan semanal de AlexusLab en el móvil">
       <div className="pfm__bar">
-        <span className="pfm__brand"><span className="pf__logo-dot" />Alexus</span>
-        <span className="pfm__pill"><i />EN VIVO</span>
+        <span className="pfm__brand">AlexusLab</span>
       </div>
       <div className="pfm__scroll">
         <div className="pfm__kicker">Plan · Semana 23</div>

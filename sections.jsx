@@ -345,68 +345,89 @@ function Reviews() {
   );
 }
 
-// ---------- 11. Pricing ----------------------------------------------------
+// ---------- 11. Pricing (3 planes, estilo Chermane) -----------------------
 function Pricing({ t }) {
   const monthAvg = (parseFloat(t.priceSemester) / 6).toFixed(2).replace('.', ',');
-  const saving = (parseFloat(t.priceMonth) * 6 - parseFloat(t.priceSemester)).toFixed(0);
-  const includes = [
+  const Check = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12l5 5L20 6" /></svg>;
+
+  const comunidad = [
     "Plataforma privada completa",
     "Discord privado de la comunidad",
     "Directos de operativa y análisis",
     "Plan semanal + checklist + revisión",
-    "Sistema de gestión de riesgo",
-    "Recursos educativos"
+    "Sistema de gestión de riesgo"
   ];
-  const Check = () => <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12l5 5L20 6" /></svg>;
+
   return (
-    <section className="section pricing-section" id="precios" data-screen-label="11 Precio">
+    <section className="section pricing-section" id="precios" data-screen-label="08 Precio">
       <div className="container">
         <SectionHead center eyebrow={t.offerLabel}
-          title={<>Accede a <span className="it accent" style={{ color: "var(--accent-green)" }}>AlexusLab.</span></>}
-          sub="Plataforma privada + comunidad + directos + sistema semanal de seguimiento." />
+          title={<>Únete a la <span className="it accent" style={{ color: "var(--accent-green)" }}>comunidad.</span></>}
+          sub="Acceso completo a la plataforma, la comunidad y los directos. Y si partes de cero, el curso para aprender desde el principio." />
 
-        <div className="plans plans--two reveal">
-          <div className="plan">
-            <h3 className="plan__name">Acceso <span className="it">mensual</span></h3>
-            <p className="plan__sub">Pruébalo un mes. Cancelas cuando quieras.</p>
-            <div className="plan__price-row">
-              <span className="plan__price num">{t.priceMonth}€</span>
-              <span className="plan__period">/ mes</span>
-              <span className="plan__crossed num">{t.priceMonthOriginal}€</span>
+        <div className="plans3 reveal-stagger">
+
+          {/* Mensual */}
+          <div className="plan3">
+            <div className="plan3__head">
+              <h3 className="plan3__name">Comunidad · Mensual</h3>
+              <span className="plan3__badge plan3__badge--hot">POPULAR</span>
             </div>
-            <ul className="plan__features">
-              {includes.map((it, i) => <li key={i}><span className="check"><Check /></span><span>{it}</span></li>)}
-              <li><span className="check"><Check /></span><span>Sin permanencia</span></li>
+            <p className="plan3__sub">Pruébala un mes. Cancelas cuando quieras.</p>
+            <div className="plan3__price">
+              <span className="plan3__amount num">{t.priceMonth}€</span>
+              <span className="plan3__per">/ mes</span>
+              <span className="plan3__was num">{t.priceMonthOriginal}€</span>
+            </div>
+            <a href={t.linkMonth} target="_blank" rel="noopener" className="plan3__cta plan3__cta--light">Entrar ahora</a>
+            <ul className="plan3__list">
+              {comunidad.map((it, i) => <li key={i}><span className="plan3__ck"><Check /></span>{it}</li>)}
+              <li><span className="plan3__ck"><Check /></span>Sin permanencia</li>
             </ul>
-            <div className="plan__cta">
-              <a href={t.linkMonth} target="_blank" rel="noopener" className="btn btn--ghost btn--lg" style={{ border: "1px solid rgba(255,255,255,0.32)", color: "#EEEDEA" }}>
-                Entrar — {t.priceMonth}€/mes<span className="arrow">→</span>
-              </a>
-              <span className="meta">Cobro mensual · Cancelas en 1 clic</span>
-            </div>
           </div>
 
-          <div className="plan plan--featured">
-            <div className="plan__ribbon">Mejor valor</div>
-            <h3 className="plan__name">Acceso <span className="it">semestral</span></h3>
-            <p className="plan__sub">El mismo acceso, más barato. 6 meses para construir el proceso.</p>
-            <div className="plan__price-row">
-              <span className="plan__price num">{t.priceSemester}€</span>
-              <span className="plan__period">/ 6 meses</span>
-              <span className="plan__crossed num">{t.priceSemesterOriginal}€</span>
+          {/* Semestral — destacado */}
+          <div className="plan3 plan3--dark">
+            <div className="plan3__head">
+              <h3 className="plan3__name">Comunidad · Semestral</h3>
+              <span className="plan3__badge plan3__badge--best">MEJOR VALOR</span>
             </div>
-            <div className="plan__save"><span className="arrow">↓</span> Sale a <b style={{ color: "#fff" }}>{monthAvg}€/mes</b> · Ahorras {saving}€</div>
-            <ul className="plan__features">
-              {includes.map((it, i) => <li key={i}><span className="check"><Check /></span><span>{it}</span></li>)}
-              <li><span className="check"><Check /></span><span>Precio bloqueado durante 6 meses</span></li>
+            <p className="plan3__sub">El mismo acceso, más barato. 6 meses de proceso.</p>
+            <div className="plan3__price">
+              <span className="plan3__amount num">{t.priceSemester}€</span>
+              <span className="plan3__per">/ 6 meses</span>
+              <span className="plan3__was num">{t.priceSemesterOriginal}€</span>
+            </div>
+            <a href={t.linkSemester} target="_blank" rel="noopener" className="plan3__cta plan3__cta--solid">Entrar ahora</a>
+            <div className="plan3__note">Sale a <b>{monthAvg}€/mes</b> · precio bloqueado 6 meses</div>
+            <ul className="plan3__list">
+              {comunidad.map((it, i) => <li key={i}><span className="plan3__ck"><Check /></span>{it}</li>)}
+              <li><span className="plan3__ck"><Check /></span>Precio bloqueado durante 6 meses</li>
             </ul>
-            <div className="plan__cta">
-              <a href={t.linkSemester} target="_blank" rel="noopener" className="btn btn--primary btn--lg">
-                Entrar — {t.priceSemester}€ / 6 meses<span className="arrow">→</span>
-              </a>
-              <span className="meta">Pago único · 6 meses de acceso</span>
-            </div>
           </div>
+
+          {/* Curso + Comunidad — sin precio, agendar llamada */}
+          <div className="plan3 plan3--course">
+            <div className="plan3__head">
+              <h3 className="plan3__name">Curso + Comunidad</h3>
+              <span className="plan3__badge plan3__badge--all">DESDE CERO</span>
+            </div>
+            <p className="plan3__sub">¿Partes de cero? Te enseño a operar con mi proceso completo, paso a paso.</p>
+            <div className="plan3__callrow">
+              <span className="plan3__calllead">Hablamos antes</span>
+              <span className="plan3__callsub">sin compromiso</span>
+            </div>
+            <a href={t.linkCourse || "#"} target={t.linkCourse ? "_blank" : undefined} rel="noopener" className="plan3__cta plan3__cta--course">Agendar una llamada</a>
+            <div className="plan3__note plan3__note--course">Te lo explico todo en una llamada y vemos si encaja contigo.</div>
+            <ul className="plan3__list">
+              <li><span className="plan3__ck"><Check /></span><span><b>Curso completo</b>: de Price Action a Order Flow</span></li>
+              <li><span className="plan3__ck"><Check /></span><span>Todo mi proceso, desde cero hasta rentable</span></li>
+              <li><span className="plan3__ck"><Check /></span><span>Llamada en grupo <b>cada 2 semanas</b> (6 meses)</span></li>
+              <li><span className="plan3__ck"><Check /></span><span>Acompañamiento directo durante el proceso</span></li>
+              <li><span className="plan3__ck"><Check /></span><span>Al terminar: <b>6 meses de comunidad gratis</b></span></li>
+            </ul>
+          </div>
+
         </div>
 
         <p className="pricing-micro reveal">Acceso privado. Sin señales. Sin humo. Solo estructura, proceso y acompañamiento.</p>

@@ -12,8 +12,11 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "priceMonthOriginal": "79",
   "priceSemester": "249",
   "priceSemesterOriginal": "300",
+  "priceCourse": "997",
+  "priceCourseOriginal": "1497",
   "linkMonth": "https://whop.com/checkout/plan_TDJCSpUMg5ddK",
   "linkSemester": "https://whop.com/checkout/plan_1awGPEaPXlNfs",
+  "linkCourse": "https://calendly.com/alexmoreno/15min",
   "platformUrl": "https://app.alexus-lab.com/",
   "offerLabel": "Oferta de lanzamiento"
 }/*EDITMODE-END*/;
@@ -110,12 +113,11 @@ function Hero({ t }) {
             <span className="live-dot" /> La comunidad privada de trading
           </div>
           <h1 className="headline headline--xl hero__h1">
-            Una comunidad para<br />
-            operar con <span className="it accent">cabeza,</span><br />
-            no en <span className="it">soledad.</span>
+            Lleva tu trading al<br />
+            <span className="it accent">siguiente nivel.</span>
           </h1>
           <p className="hero__sub">
-            Educación en Price Action y psicología, directos de operativa, previsión semanal y una plataforma que analiza tu evolución. Todo en un mismo sitio, contigo cada semana.
+            Una comunidad privada con plataforma de proceso, directos de operativa y seguimiento semanal. Deja de operar en solitario y hazlo con estructura.
           </p>
           <div className="hero__cta-row">
             <a className="btn btn--primary btn--lg" href={t.linkMonth} target="_blank" rel="noopener">
@@ -131,7 +133,6 @@ function Hero({ t }) {
 
         <div className="hero__visual hero__visual--phone">
           <PhoneFrame><PlatformPhone /></PhoneFrame>
-          <div className="hero__visual-tag"><span className="live-dot" /> Tu journal de proceso, en el bolsillo</div>
         </div>
       </div>
     </section>
@@ -286,9 +287,12 @@ function Tweaks({ t, setTweak }) {
       <TweakText label="Mensual original (€)" value={t.priceMonthOriginal} onChange={(v) => setTweak('priceMonthOriginal', v)} />
       <TweakText label="Precio 6 meses (€)" value={t.priceSemester} onChange={(v) => setTweak('priceSemester', v)} />
       <TweakText label="6 meses original (€)" value={t.priceSemesterOriginal} onChange={(v) => setTweak('priceSemesterOriginal', v)} />
+      <TweakText label="Precio curso (€)" value={t.priceCourse} onChange={(v) => setTweak('priceCourse', v)} />
+      <TweakText label="Curso original (€)" value={t.priceCourseOriginal} onChange={(v) => setTweak('priceCourseOriginal', v)} />
       <TweakSection label="Links Whop" />
       <TweakText label="Link mensual" value={t.linkMonth} onChange={(v) => setTweak('linkMonth', v)} />
       <TweakText label="Link 6 meses" value={t.linkSemester} onChange={(v) => setTweak('linkSemester', v)} />
+      <TweakText label="Link agendar llamada (curso)" value={t.linkCourse} onChange={(v) => setTweak('linkCourse', v)} />
       <TweakText label="URL plataforma (login)" value={t.platformUrl} onChange={(v) => setTweak('platformUrl', v)} />
     </TweaksPanel>
   );
@@ -318,7 +322,6 @@ function App() {
   useReveal();
   return (
     <div id="top" className="page">
-      <TopBanner t={t} />
       <ScrollProgress />
       <Nav t={t} />
       <Hero t={t} />
@@ -326,12 +329,12 @@ function App() {
       <Problem />
       <Solution t={t} />
       <PlatformSection t={t} />
+      <Pricing t={t} />
       <Community />
       <Directos />
       <Incluye t={t} />
       <ParaQuien />
       <Reviews />
-      <Pricing t={t} />
       <FAQ />
       <FinalCTA t={t} />
       <Footer />
