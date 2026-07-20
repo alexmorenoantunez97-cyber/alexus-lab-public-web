@@ -18,7 +18,10 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "linkSemester": "https://whop.com/checkout/plan_1awGPEaPXlNfs",
   "linkCourse": "https://calendly.com/alexmoreno/15min",
   "platformUrl": "https://app.alexus-lab.com/",
-  "offerLabel": "Oferta de lanzamiento"
+  "offerLabel": "Oferta de lanzamiento",
+  "statFondeos": "50+",
+  "statRetiros": "Del juego al oficio",
+  "statMiembros": "25+"
 }/*EDITMODE-END*/;
 
 // =========================================================================
@@ -125,15 +128,17 @@ function Hero({ t }) {
             </a>
             <a className="btn btn--ghost btn--lg" href="#plataforma">Ver qué incluye</a>
           </div>
-          <p className="hero__micro">No es una comunidad de señales. Es un sistema para dejar de improvisar.</p>
+          <p className="hero__micro">Un sistema para dejar de improvisar.</p>
+          <div className="hero__stats">
+            <div className="hero__stat"><CountUp value={t.statMiembros} /><span>Miembros activos</span></div>
+            <div className="hero__stat"><CountUp value={t.statFondeos} /><span>Traders acompañados</span></div>
+            <div className="hero__stat"><CountUp value={t.statRetiros} /><span>Así nos definen</span></div>
+          </div>
           <a className="hero__login" href={t.platformUrl} target="_blank" rel="noopener">
             ¿Ya eres miembro? Acceder a la plataforma <span className="arrow">→</span>
           </a>
         </div>
 
-        <div className="hero__visual hero__visual--phone">
-          <PhoneFrame><PlatformPhone /></PhoneFrame>
-        </div>
       </div>
     </section>
   );
@@ -282,6 +287,10 @@ function Tweaks({ t, setTweak }) {
     <TweaksPanel>
       <TweakSection label="Oferta" />
       <TweakText label="Etiqueta de oferta" value={t.offerLabel} onChange={(v) => setTweak('offerLabel', v)} />
+      <TweakSection label="Prueba social" />
+      <TweakText label="Traders acompañados" value={t.statFondeos} onChange={(v) => setTweak('statFondeos', v)} />
+      <TweakText label="Frase de cambio" value={t.statRetiros} onChange={(v) => setTweak('statRetiros', v)} />
+      <TweakText label="Miembros activos" value={t.statMiembros} onChange={(v) => setTweak('statMiembros', v)} />
       <TweakSection label="Precios" />
       <TweakText label="Precio mensual (€)" value={t.priceMonth} onChange={(v) => setTweak('priceMonth', v)} />
       <TweakText label="Mensual original (€)" value={t.priceMonthOriginal} onChange={(v) => setTweak('priceMonthOriginal', v)} />
@@ -328,7 +337,9 @@ function App() {
       <ValueBar />
       <Problem />
       <Solution t={t} />
+      <QuienSoy t={t} />
       <PlatformSection t={t} />
+      <Resultados t={t} />
       <Pricing t={t} />
       <Community />
       <Directos />
@@ -339,7 +350,6 @@ function App() {
       <FinalCTA t={t} />
       <Footer />
       <MobileCTABar t={t} />
-      <LiveToast />
       <Tweaks t={t} setTweak={setTweak} />
     </div>
   );

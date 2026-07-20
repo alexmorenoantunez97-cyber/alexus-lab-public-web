@@ -2,6 +2,35 @@
 // Uses globals from mockups.jsx (PFIcon, PlatformDesktop, PlatformPhone, BrowserFrame, PhoneFrame).
 
 // ---------- Small shared bits ---------------------------------------------
+// CountUp — anima cifras tipo "25+" al entrar en viewport; texto no numérico queda tal cual.
+function CountUp({ value }) {
+  const m = /^(\d+)(.*)$/.exec(String(value).trim());
+  const ref = React.useRef(null);
+  const [n, setN] = React.useState(m ? 0 : null);
+  React.useEffect(() => {
+    if (!m || !ref.current) return;
+    const target = parseInt(m[1], 10);
+    let raf, started = false;
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting || started) return;
+      started = true;
+      const t0 = performance.now(), dur = 1400;
+      const tick = (now) => {
+        const p = Math.min(1, (now - t0) / dur);
+        setN(Math.round(target * (1 - Math.pow(1 - p, 3))));
+        if (p < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+      io.disconnect();
+    }, { threshold: 0.4 });
+    io.observe(ref.current);
+    return () => { io.disconnect(); cancelAnimationFrame(raf); };
+  }, [value]);
+  if (!m) return <b ref={ref}>{value}</b>;
+  return <b ref={ref}>{n}{m[2]}</b>;
+}
+window.CountUp = CountUp;
+
 function CTAMicro({ children }) {
   return <span className="cta-micro">{children}</span>;
 }
@@ -21,7 +50,7 @@ function ValueBar() {
   const items = [
     { icon: "grid", label: "Plataforma privada incluida" },
     { icon: "discord", label: "Comunidad activa en Discord" },
-    { icon: "play", label: "Directos y análisis de mercado" },
+    { icon: "play", label: "Directos y análisis" },
     { icon: "calendar", label: "Sistema semanal de mejora" }
   ];
   return (
@@ -105,6 +134,31 @@ function Solution({ t }) {
   );
 }
 
+// ---------- 4b. Quién soy ---------------------------------------------------
+function QuienSoy({ t }) {
+  return (
+    <section className="section quiensoy-section" id="quien-soy" data-screen-label="04b Quién soy">
+      <div className="container quiensoy-grid">
+        <div className="quiensoy-photo reveal">
+          <img src="assets/alex-crossed-arms.jpeg" alt="Alex Moreno, fundador de AlexusLab" />
+        </div>
+        <div className="quiensoy-copy reveal">
+          <div className="eyebrow">Quién te acompaña</div>
+          <h2 className="headline headline--lg">Soy Alex, y esto no es <span className="it">teoría.</span></h2>
+          <p className="sub">
+            Llevo años operando NQ y ES en directo, cometiendo los mismos errores que cualquiera — y construyendo, con el tiempo, un proceso que de verdad sostiene. AlexusLab es esa misma estructura, abierta a un grupo reducido.
+          </p>
+          <div className="quiensoy-stats">
+            <div><b>{t.statFondeos}</b><span>Miembros fondeados</span></div>
+            <div><b>{t.statRetiros}</b><span>Así nos definen</span></div>
+            <div><b>{t.statMiembros}</b><span>Miembros activos</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ---------- 5. Platform (the star) ----------------------------------------
 function PlatformSection({ t }) {
   const features = [
@@ -162,6 +216,42 @@ function PlatformSection({ t }) {
   );
 }
 
+// ---------- 5b. Resultados + prueba social (WhatsApp) ---------------------
+function Resultados({ t }) {
+  const shots = [
+    { src: "assets/proof-2.png", cap: "Payout de 3.000$ — Tradeify" },
+    { src: "assets/proof-6.png", cap: "Verificación superada — FTMO" },
+    { src: "assets/proof-8.png", cap: "Cuenta fondeada 50K — Lucid Trading" },
+    { src: "assets/proof-9.png", cap: "Payout de 1.200$ — TickTick Trader" },
+    { src: "assets/proof-7.png", cap: "Funded Trader Certificate — Orion" },
+    { src: "assets/proof-12.png", cap: "Payout de 1.500$ — Topstep" }
+  ];
+  return (
+    <section className="section results-section" id="resultados" data-screen-label="05b Resultados">
+      <div className="container">
+        <SectionHead center eyebrow="Resultados reales"
+          title={<>No son promesas. Son <span className="it">capturas reales.</span></>}
+          sub="Certificados de fondeo, payouts y mensajes tal cual me los mandan los miembros de la comunidad." />
+
+        <div className="results-stats reveal-stagger">
+          <div className="results-stat"><b>{t.statMiembros}</b><span>Miembros activos</span></div>
+          <div className="results-stat"><b>{t.statFondeos}</b><span>Traders acompañados</span></div>
+          <div className="results-stat"><b>{t.statRetiros}</b><span>Así nos definen</span></div>
+        </div>
+
+        <div className="proof-grid reveal-stagger">
+          {shots.map((s, i) => (
+            <div className="proof-shot" key={i}>
+              <img src={s.src} alt={s.cap} loading="lazy" />
+              <div className="proof-shot__cap">{s.cap}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ---------- 6. Discord community ------------------------------------------
 function Community() {
   const items = [
@@ -200,6 +290,10 @@ function Community() {
                 ))}
               </div>
             ))}
+          </div>
+          <div className="community-photo">
+            <img src="assets/alex-handshake.jpeg" alt="Alex con un miembro de la comunidad" />
+            <span className="community-photo__cap">Acompañamiento real, no un bot en el chat.</span>
           </div>
         </div>
       </div>
@@ -314,6 +408,7 @@ function ParaQuien() {
 
 // ---------- 10. Reviews ----------------------------------------------------
 function Reviews() {
+  const realShots = ["assets/proof-17.png", "assets/proof-15.png", "assets/proof-16.png", "assets/proof-14.png", "assets/proof-13.png", "assets/proof-3.png"];
   const items = [
     { quote: "Por primera vez tengo un plan diario y reglas que respeto. Dejé de improvisar cada mañana.", name: "Luis R.", sub: "NQ · Madrid", initials: "LR" },
     { quote: "Lo que más me ha cambiado es la templanza. Ya no miro el gráfico como si tuviera que hacer algo todo el rato.", name: "Raul J.", sub: "ES · Valencia", initials: "RJ" },
@@ -339,6 +434,19 @@ function Reviews() {
             </article>
           ))}
         </div>
+
+        <div className="reviews-real">
+          <div className="reviews-real__label">Mensajes reales, tal cual me los mandan</div>
+          <div className="reviews-real__grid reveal-stagger">
+            {realShots.map((s, i) => (
+              <div className="reviews-real__shot" key={i}>
+                <img src={s} alt="Mensaje real de un miembro de la comunidad" loading="lazy" />
+              </div>
+            ))}
+          </div>
+          <div className="reviews-real__hint">Desliza para ver más →</div>
+        </div>
+
         <p className="testi-disclaimer">Los testimonios reflejan experiencias personales. No prometemos resultados financieros.</p>
       </div>
     </section>
@@ -363,9 +471,9 @@ function Pricing({ t }) {
       <div className="container">
         <SectionHead center eyebrow={t.offerLabel}
           title={<>Únete a la <span className="it accent" style={{ color: "var(--accent-green)" }}>comunidad.</span></>}
-          sub="Acceso completo a la plataforma, la comunidad y los directos. Y si partes de cero, el curso para aprender desde el principio." />
+          sub="Acceso completo a la plataforma, la comunidad y los directos." />
 
-        <div className="plans3 reveal-stagger">
+        <div className="plans3 plans3--two reveal-stagger">
 
           {/* Mensual */}
           <div className="plan3">
@@ -406,28 +514,6 @@ function Pricing({ t }) {
             </ul>
           </div>
 
-          {/* Curso + Comunidad — sin precio, agendar llamada */}
-          <div className="plan3 plan3--course">
-            <div className="plan3__head">
-              <h3 className="plan3__name">Curso + Comunidad</h3>
-              <span className="plan3__badge plan3__badge--all">DESDE CERO</span>
-            </div>
-            <p className="plan3__sub">¿Partes de cero? Te enseño a operar con mi proceso completo, paso a paso.</p>
-            <div className="plan3__callrow">
-              <span className="plan3__calllead">Hablamos antes</span>
-              <span className="plan3__callsub">sin compromiso</span>
-            </div>
-            <a href={t.linkCourse || "#"} target={t.linkCourse ? "_blank" : undefined} rel="noopener" className="plan3__cta plan3__cta--course">Agendar una llamada</a>
-            <div className="plan3__note plan3__note--course">Te lo explico todo en una llamada y vemos si encaja contigo.</div>
-            <ul className="plan3__list">
-              <li><span className="plan3__ck"><Check /></span><span><b>Curso completo</b>: de Price Action a Order Flow</span></li>
-              <li><span className="plan3__ck"><Check /></span><span>Todo mi proceso, desde cero hasta rentable</span></li>
-              <li><span className="plan3__ck"><Check /></span><span>Llamada en grupo <b>cada 2 semanas</b> (6 meses)</span></li>
-              <li><span className="plan3__ck"><Check /></span><span>Acompañamiento directo durante el proceso</span></li>
-              <li><span className="plan3__ck"><Check /></span><span>Al terminar: <b>6 meses de comunidad gratis</b></span></li>
-            </ul>
-          </div>
-
         </div>
 
         <p className="pricing-micro reveal">Acceso privado. Sin señales. Sin humo. Solo estructura, proceso y acompañamiento.</p>
@@ -436,21 +522,109 @@ function Pricing({ t }) {
   );
 }
 
-// ---------- 13. Final CTA --------------------------------------------------
+// ---------- 13. Final CTA — multi-step qualifying form -------------------
+function QuestForm({ t }) {
+  const STEPS = [
+    { key: "nombre", q: "¿Cómo te llamas?", type: "text", placeholder: "Tu nombre" },
+    { key: "telefono", q: "¿Cuál es tu teléfono?", type: "tel", placeholder: "+34 600 000 000" },
+    { key: "edadOrigen", q: "¿Cuántos años tienes y de dónde eres?", type: "text", placeholder: "Ej: 27 años, Madrid" },
+    { key: "objetivo", q: "¿Cuál es tu objetivo principal en el trading?", type: "text", placeholder: "Ej: vivir de esto, ingreso extra..." },
+    { key: "tiempo", q: "¿Cuánto tiempo llevas intentándolo?", type: "choice", options: ["- 6 meses", "+ 6 meses", "+ 1 año"] },
+    { key: "obstaculo", q: "¿Cuál es tu mayor obstáculo ahora mismo?", type: "text", placeholder: "Cuéntamelo con tus palabras" }
+  ];
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const done = step >= STEPS.length;
+  const cur = STEPS[step];
+  const pct = Math.min(100, Math.round((step / STEPS.length) * 100));
+
+  const setVal = (v) => setAnswers(a => ({ ...a, [cur.key]: v }));
+  const canNext = cur && answers[cur.key] && String(answers[cur.key]).trim().length > 0;
+  const next = () => { if (canNext) setStep(s => s + 1); };
+
+  const calendlyHref = (() => {
+    if (!t.linkCourse) return "#";
+    try {
+      const url = new URL(t.linkCourse);
+      if (answers.nombre) url.searchParams.set('name', answers.nombre);
+      return url.toString();
+    } catch (e) { return t.linkCourse; }
+  })();
+
+  return (
+    <div className="qform">
+      <div className="qform__intro">
+        <div className="qform__step"><span className="qform__step-n">1</span><div><b>Rellenas el formulario</b><span>Cuéntame tu situación. Te lleva un minuto.</span></div></div>
+        <span className="qform__step-arrow">→</span>
+        <div className="qform__step"><span className="qform__step-n">2</span><div><b>Reservas tu llamada</b><span>Eliges el hueco que mejor te encaje, gratis.</span></div></div>
+        <span className="qform__step-arrow">→</span>
+        <div className="qform__step"><span className="qform__step-n">3</span><div><b>Hablamos 15 min</b><span>Analizamos tu situación sin compromiso.</span></div></div>
+      </div>
+
+      <div className="qform__bar"><i style={{ width: `${pct}%` }} /></div>
+
+      {!done ? (
+        <div className="qform__body">
+          <div className="qform__meta">Paso {step + 1} de {STEPS.length}</div>
+          <label className="qform__q">{cur.q}</label>
+          {cur.type === "choice" ? (
+            <div className="qform__choices">
+              {cur.options.map((op, i) => (
+                <button key={i} className={`qform__choice ${answers[cur.key] === op ? 'sel' : ''}`}
+                  onClick={() => { setVal(op); setTimeout(() => setStep(s => s + 1), 180); }}>
+                  {op}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <input
+              className="qform__input"
+              type={cur.type}
+              placeholder={cur.placeholder}
+              value={answers[cur.key] || ""}
+              onChange={(e) => setVal(e.target.value)}
+              onKeyDown={(e) => { if (e.key === 'Enter') next(); }}
+            />
+          )}
+          {cur.type !== "choice" && (
+            <button className="qform__next" disabled={!canNext} onClick={next}>
+              {step === STEPS.length - 1 ? "Ver mis huecos disponibles" : "Siguiente"}<span className="arrow">→</span>
+            </button>
+          )}
+        </div>
+      ) : (
+        <div className="qform__final">
+          <div className="qform__final-check"><Check /></div>
+          <h3>Perfecto{answers.nombre ? `, ${answers.nombre}` : ""}.</h3>
+          <p>Ya tengo lo que necesito. Ahora elige el hueco que mejor te encaje para hablar 15 minutos, gratis.</p>
+          <a className="btn btn--primary btn--lg qform__cta" href={calendlyHref} target="_blank" rel="noopener">
+            Reservar mi llamada gratuita<span className="arrow">→</span>
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}
+
+const Check = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12l5 5L20 6" /></svg>;
+
 function FinalCTA({ t }) {
   return (
     <section className="section final-cta" data-screen-label="13 CTA final">
       <img className="final-cta__monogram" src="assets/logo-monogram-white.png" alt="" />
       <div className="final-cta__inner reveal">
-        <div className="eyebrow">Última llamada</div>
-        <h2>Deja de operar <span className="it">solo.</span></h2>
-        <p>Plataforma privada, comunidad, directos y un sistema semanal para ordenar tu trading.</p>
-        <div className="final-cta__buttons">
-          <a className="btn btn--primary btn--lg" href={t.linkMonth} target="_blank" rel="noopener">
-            Entrar a AlexusLab por {t.priceMonth}€/mes<span className="arrow">→</span>
-          </a>
+        <div className="final-cta__layout">
+          <div className="final-cta__photo">
+            <img src="assets/alex-charla.png" alt="Alex Moreno, fundador de AlexusLab" />
+          </div>
+          <div className="final-cta__copy-col">
+            <div className="eyebrow">Último paso</div>
+            <h2>Hablemos <span className="it">gratis.</span></h2>
+            <p>Cuéntame tu situación en una llamada de 15 minutos, sin compromiso. Analizamos dónde estás y te digo honestamente si AlexusLab puede ayudarte.</p>
+            <QuestForm t={t} />
+          </div>
         </div>
-        <CTAMicro>Acceso inmediato · Sin permanencia · {t.offerLabel} activa</CTAMicro>
+        <CTAMicro>Sin compromiso · 100% gratuita · Respondo yo, no un bot</CTAMicro>
       </div>
     </section>
   );
