@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>AlexusLab — Elige tu camino</title>
+<link rel="stylesheet" href="funnel.css" />
+<style>
+body{background:#050607}
+.hub{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:26px 0 0;position:relative;z-index:1}
+.hub__inner{width:100%;max-width:560px;margin:0 auto;padding:0 18px}
+.hub__photo{position:relative;width:100%;border-radius:18px;overflow:hidden;border:1px solid var(--f-line);aspect-ratio:1/1;background:var(--f-card);box-shadow:0 30px 90px rgba(0,0,0,.65)}
+.hub__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 28%}
+.hub__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,7,.6) 0%,transparent 38%,rgba(5,6,7,.7) 100%)}
+.hub__handle{position:absolute;top:18px;left:20px;z-index:2;font-size:clamp(22px,5.6vw,30px);font-weight:800;letter-spacing:-.03em;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+.hub__badge{position:absolute;left:20px;bottom:18px;z-index:2;display:inline-flex;align-items:center;gap:9px;padding:8px 14px;border-radius:999px;background:rgba(5,6,7,.74);backdrop-filter:blur(8px);border:1px solid var(--f-line-2);font-size:12px;font-weight:600;color:var(--f-ink)}
+.hub__cta{margin-top:16px}
+.hub__mini{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.hub__mini .btn{flex-direction:column;gap:9px;padding:18px 12px;font-size:12px;letter-spacing:.06em}
+.hub__mini .btn__ico{width:36px;height:36px}
+.hub__price{display:block;margin-top:3px;font-size:12.5px;font-weight:600;color:var(--f-ink-3);letter-spacing:0;text-transform:none}
+.hub .btn--primary .hub__price{color:rgba(8,9,10,.72)}
+.hub .btn__ico svg{width:20px;height:20px;fill:currentColor}
+.hub .btn--primary .btn__ico{background:rgba(5,6,7,.16);color:#08090A}
+.hub .btn--ghost .btn__ico{background:rgba(255,255,255,.09);color:var(--f-ink)}
+.hub .foot{margin-top:40px;background:transparent;border-top-color:rgba(255,255,255,.07)}
+@media(max-height:820px){.hub__photo{aspect-ratio:16/10}}
+@media(max-height:660px){.hub__photo{aspect-ratio:16/9}.hub .btn{padding:15px 20px}.hub__mini .btn{padding:14px 12px}}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5V6SQC3VV2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5V6SQC3VV2');</script>
+<script>document.addEventListener('DOMContentLoaded',function(){
+document.querySelectorAll('a[href]').forEach(function(a){a.addEventListener('click',function(){
+var h=a.getAttribute('href')||'';var t=(a.textContent||'').trim().slice(0,60);
+if(h.indexOf('whop.com')>-1) gtag('event','checkout_click',{plan:h.indexOf('1awGPEaPXlNfs')>-1?'6meses':'mensual',label:t});
+else if(h.indexOf('calendly')>-1) gtag('event','calendly_click',{label:t});
+else if(h==='#precios') gtag('event','cta_precios',{label:t});
+else if(h.indexOf('Comunidad.html')>-1) gtag('event','hub_comunidad');
+else if(h.indexOf('Mentoria.html')>-1) gtag('event','hub_clase_gratis');
+else if(h.indexOf('youtube')>-1) gtag('event','hub_youtube');
+else if(h.indexOf('app.alexus-lab')>-1) gtag('event','hub_login');
+});});
+document.querySelectorAll('.vid,.vid__lock').forEach(function(v){v.addEventListener('click',function(){gtag('event','video_play',{page:location.pathname});},{once:true});});
+var f=document.querySelector('form');if(f)f.addEventListener('submit',function(){gtag('event','lead_form_submit');});
+var p=document.getElementById('precios');
+if(p&&'IntersectionObserver'in window){var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){gtag('event','view_precios');o.disconnect();}},{threshold:.3});o.observe(p);}
+});</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<main class="hub">
+  <div class="hub__inner">
+    <div class="hub__photo rv in">
+      <span class="hub__handle">@alexustrader</span>
+      <img src="assets/hub-hero.jpg" alt="Alex, fundador de AlexusLab" />
+      <span class="hub__badge"><span class="dot"></span> +25 traders dentro ahora mismo</span>
+    </div>
+
+    <div class="hub__cta btn-stack rv">
+      <a class="btn btn--primary" href="Comunidad.html">
+        <span class="btn__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="7.5" r="3.6"/><path d="M9 12.6c-3.6 0-6.5 2-6.5 4.5V20h13v-2.9c0-2.5-2.9-4.5-6.5-4.5Z"/><circle cx="17.4" cy="8.4" r="2.8"/><path d="M17.4 12.4c-.9 0-1.8.15-2.5.42 1.2 1.1 1.9 2.5 1.9 4.05V20h5.2v-2.6c0-2.2-2.1-3.9-4.6-4Z"/></svg></span>
+        <span>Entrar a la comunidad<span class="hub__price">49,99 €/mes · acceso inmediato</span></span>
+        <span class="btn__arrow">›</span>
+      </a>
+      <a class="btn btn--ghost" href="Mentoria.html">
+        <span class="btn__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.5 1.5 8 12 13.5 22.5 8 12 2.5Z"/><path d="M4.5 11.2v4.4c0 2 3.4 3.6 7.5 3.6s7.5-1.6 7.5-3.6v-4.4L12 15.2 4.5 11.2Z"/><path d="M21.4 9.3v6.2h1.3V8.6l-1.3.7Z"/></svg></span>
+        <span>No sé por dónde empezar<span class="hub__price">Ver mi clase gratis</span></span>
+        <span class="btn__arrow">›</span>
+      </a>
+    </div>
+
+    <div class="hub__mini rv">
+      <a class="btn btn--ghost" href="https://youtube.com/@alexus.trader?si=gVeKNGs5DDg7jj62" target="_blank" rel="noopener">
+        <span class="btn__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22.5 7.4a2.8 2.8 0 0 0-1.95-2C18.8 5 12 5 12 5s-6.8 0-8.55.4A2.8 2.8 0 0 0 1.5 7.4C1.1 9.2 1.1 12 1.1 12s0 2.8.4 4.6a2.8 2.8 0 0 0 1.95 2C5.2 19 12 19 12 19s6.8 0 8.55-.4a2.8 2.8 0 0 0 1.95-2c.4-1.8.4-4.6.4-4.6s0-2.8-.4-4.6ZM9.9 15.3V8.7l5.6 3.3-5.6 3.3Z"/></svg></span>
+        YouTube
+      </a>
+      <a class="btn btn--ghost" href="https://app.alexus-lab.com/" target="_blank" rel="noopener">
+        <span class="btn__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17.5 9.5h-.8V7.2a4.7 4.7 0 1 0-9.4 0v2.3h-.8A1.7 1.7 0 0 0 4.8 11.2v8A1.7 1.7 0 0 0 6.5 20.9h11a1.7 1.7 0 0 0 1.7-1.7v-8a1.7 1.7 0 0 0-1.7-1.7Zm-8.4-2.3a2.9 2.9 0 1 1 5.8 0v2.3H9.1V7.2Zm3.8 8.6v1.9h-1.8v-1.9a1.6 1.6 0 1 1 1.8 0Z"/></svg></span>
+        Acceso plataforma
+      </a>
+    </div>
+
+    <footer class="foot">
+      <nav class="foot__links">
+        <a href="privacidad.html">Política de privacidad</a>
+        <a href="terminos.html">Términos de uso</a>
+        <a href="condiciones.html">Condiciones de acceso</a>
+      </nav>
+      <div class="foot__c">© 2026 ALEXUSLAB</div>
+      <p class="foot__legal">El trading conlleva riesgo de pérdida. Los resultados mostrados son individuales y no garantizan resultados futuros. Este sitio no forma parte de Meta Platforms, Inc.</p>
+    </footer>
+  </div>
+</main>
+<script src="funnel.js"></script>
+</body>
+</html>
