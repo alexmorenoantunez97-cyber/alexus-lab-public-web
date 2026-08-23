@@ -26,11 +26,15 @@
   // sticky mobile CTA appears after the hero
   var sticky = document.querySelector('.sticky-cta');
   var anchor = document.querySelector('[data-sticky-after]');
-  if (sticky && anchor) {
-    var so = new IntersectionObserver(function (es) {
-      sticky.classList.toggle('on', !es[0].isIntersecting && es[0].boundingClientRect.top < 0);
-    }, { threshold: 0 });
-    so.observe(anchor);
+  if (sticky) {
     document.body.classList.add('has-sticky');
+    if (sticky.hasAttribute('data-always') || !anchor) {
+      setTimeout(function () { sticky.classList.add('on'); }, 500);
+    } else {
+      var so = new IntersectionObserver(function (es) {
+        sticky.classList.toggle('on', !es[0].isIntersecting && es[0].boundingClientRect.top < 0);
+      }, { threshold: 0 });
+      so.observe(anchor);
+    }
   }
 })();

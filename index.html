@@ -7,25 +7,24 @@
 <link rel="stylesheet" href="funnel.css" />
 <style>
 body{background:#050607}
-.hub{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:26px 0 0;position:relative;z-index:1}
-.hub__inner{width:100%;max-width:560px;margin:0 auto;padding:0 18px}
-.hub__photo{position:relative;width:100%;border-radius:18px;overflow:hidden;border:1px solid var(--f-line);aspect-ratio:1/1;background:var(--f-card);box-shadow:0 30px 90px rgba(0,0,0,.65)}
+.hub{min-height:100svh;display:flex;flex-direction:column;padding:16px 0 0;position:relative;z-index:1}
+.hub__inner{width:100%;max-width:480px;margin:0 auto;padding:0 16px}
+.hub__photo{position:relative;width:100%;border-radius:22px;overflow:hidden;border:1px solid var(--f-line);aspect-ratio:1/1;background:var(--f-card);box-shadow:0 30px 90px rgba(0,0,0,.65)}
 .hub__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 28%}
 .hub__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,7,.6) 0%,transparent 38%,rgba(5,6,7,.7) 100%)}
 .hub__handle{position:absolute;top:18px;left:20px;z-index:2;font-size:clamp(22px,5.6vw,30px);font-weight:800;letter-spacing:-.03em;text-shadow:0 2px 18px rgba(0,0,0,.6)}
 .hub__badge{position:absolute;left:20px;bottom:18px;z-index:2;display:inline-flex;align-items:center;gap:9px;padding:8px 14px;border-radius:999px;background:rgba(5,6,7,.74);backdrop-filter:blur(8px);border:1px solid var(--f-line-2);font-size:12px;font-weight:600;color:var(--f-ink)}
-.hub__cta{margin-top:16px}
+.hub__cta{margin-top:14px}
 .hub__mini{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
-.hub__mini .btn{flex-direction:column;gap:9px;padding:18px 12px;font-size:12px;letter-spacing:.06em}
+.hub__mini .btn{flex-direction:column;gap:10px;padding:20px 12px;font-size:12px;letter-spacing:.06em}
 .hub__mini .btn__ico{width:36px;height:36px}
 .hub__price{display:block;margin-top:3px;font-size:12.5px;font-weight:600;color:var(--f-ink-3);letter-spacing:0;text-transform:none}
 .hub .btn--primary .hub__price{color:rgba(8,9,10,.72)}
 .hub .btn__ico svg{width:20px;height:20px;fill:currentColor}
 .hub .btn--primary .btn__ico{background:rgba(5,6,7,.16);color:#08090A}
 .hub .btn--ghost .btn__ico{background:rgba(255,255,255,.09);color:var(--f-ink)}
-.hub .foot{margin-top:40px;background:transparent;border-top-color:rgba(255,255,255,.07)}
-@media(max-height:820px){.hub__photo{aspect-ratio:16/10}}
-@media(max-height:660px){.hub__photo{aspect-ratio:16/9}.hub .btn{padding:15px 20px}.hub__mini .btn{padding:14px 12px}}
+.hub .foot{margin-top:auto;padding-top:36px;background:transparent;border-top-color:rgba(255,255,255,.07)}
+@media(max-height:700px){.hub .btn{padding:17px 20px}.hub__mini .btn{padding:16px 12px}}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5V6SQC3VV2"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5V6SQC3VV2');</script>
