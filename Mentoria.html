@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Clase gratis — AlexusLab</title>
+<link rel="stylesheet" href="funnel.css" />
+<style>
+.hero{padding:46px 0 56px;text-align:center}
+.hero__logo{height:clamp(44px,6vw,70px);margin:0 auto 40px;display:block}
+.hero h1{margin-bottom:12px;font-size:clamp(30px,4.6vw,52px)}
+.hero .lead{font-size:clamp(15px,1.9vw,17.5px)}
+@media(max-width:640px){.hero{padding:34px 0 46px}.hero__logo{margin-bottom:30px}}
+
+.vid{position:relative;margin:20px auto 0;max-width:min(560px,calc(27svh * 16 / 9));border-radius:14px;overflow:hidden;border:1px solid rgba(127,176,105,.5);box-shadow:0 26px 80px rgba(0,0,0,.65);aspect-ratio:16/9;background:#0E0F11;cursor:pointer}
+.vid img,.vid iframe{width:100%;height:100%;display:block;border:0}
+.vid img{object-fit:cover;opacity:.45}
+.vid__lock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(5,6,7,.42);border:0;cursor:pointer;padding:0;font-family:var(--f-font)}
+.vid__lock span.ico{width:64px;height:64px;border-radius:50%;background:var(--f-g);display:grid;place-items:center;box-shadow:0 12px 44px rgba(127,176,105,.5);transition:transform .2s ease}
+.vid__lock:hover span.ico{transform:scale(1.07)}
+.vid__lock svg{width:24px;height:24px;fill:#08090A}
+.vid__lock b{font-size:13px;font-weight:700;color:var(--f-ink);letter-spacing:.02em}
+.vid__cap{margin-top:10px;font-size:12.5px;color:var(--f-ink-3)}
+.hero__cta{max-width:560px;margin:14px auto 0}
+.btn--hero{padding:21px 28px;font-size:clamp(16px,2.2vw,19px);border-radius:14px;box-shadow:0 0 0 1px rgba(127,176,105,.55),0 0 34px rgba(127,176,105,.35),0 18px 60px rgba(127,176,105,.28)}
+.btn--hero:hover{box-shadow:0 0 0 1px rgba(155,208,127,.75),0 0 60px rgba(127,176,105,.65),0 22px 76px rgba(127,176,105,.45)}
+
+.story{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+@media(max-width:860px){.story{grid-template-columns:1fr;gap:26px}}
+.story h2{margin-bottom:18px}
+.story p{font-size:17.5px;line-height:1.6;color:var(--f-ink-2)}
+.story p+p{margin-top:14px}
+.story p b{color:var(--f-ink)}
+.story .btn{margin-top:26px}
+.story__img{position:relative}
+.story__img::before{content:"";position:absolute;inset:-13px;border:1px solid rgba(127,176,105,.32);border-radius:18px}
+.story__img img{position:relative;width:100%;border-radius:13px;box-shadow:0 26px 70px rgba(0,0,0,.6)}
+
+.plist{counter-reset:p;display:grid;gap:1px;background:var(--f-line);border:1px solid var(--f-line);border-radius:14px;overflow:hidden;margin-top:28px;padding:0}
+.plist li{list-style:none;counter-increment:p;background:rgba(20,21,24,.85);padding:20px 22px 20px 62px;position:relative;font-size:16.5px;line-height:1.5;color:var(--f-ink-2)}
+.plist li::before{content:counter(p,decimal-leading-zero);position:absolute;left:22px;top:21px;font-size:13px;font-weight:800;color:var(--f-g)}
+.plist b{color:var(--f-ink);font-weight:700}
+
+.dips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.dips{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.dips{grid-template-columns:1fr;gap:14px}}
+.dip{background:rgba(20,21,24,.82);border:1px solid var(--f-line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.dip__img{position:relative;width:100%;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:#0B0C0E;display:grid;place-items:center}
+.dip__img img{width:100%;height:100%;object-fit:contain}
+.dip__cap{display:flex;flex-direction:column;gap:3px;padding:0 3px 2px}
+.dip__cap b{font-size:15px;font-weight:700;line-height:1.2}
+.dip__cap span{font-size:13px;font-weight:700;color:var(--f-g);line-height:1.2}
+
+.band{padding:34px 0;text-align:center}
+.band__in{max-width:520px;margin:0 auto}
+.band p{font-size:17px;color:var(--f-ink-2);margin-bottom:16px}
+
+.quiz{max-width:720px;margin:0 auto}
+.quiz__box{position:relative;background:rgba(20,21,24,.9);border:1px solid var(--f-line);border-radius:20px;padding:clamp(30px,4vw,46px) clamp(22px,3.4vw,44px) clamp(24px,3vw,34px);min-height:440px;display:flex;flex-direction:column;box-shadow:0 30px 90px rgba(0,0,0,.55);overflow:hidden}
+.quiz__bar{position:absolute;top:0;left:0;right:0;height:5px;background:rgba(255,255,255,.07)}
+.quiz__bar i{display:block;height:100%;background:linear-gradient(90deg,var(--f-g),#B4E08C);box-shadow:0 0 18px rgba(127,176,105,.75);transition:width .4s cubic-bezier(.4,0,.2,1)}
+.quiz__n{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;font-weight:700;letter-spacing:.2em;color:var(--f-g);margin-bottom:16px}
+.quiz__n span{color:var(--f-ink-3)}
+.quiz__q{font-size:clamp(24px,3.8vw,36px);font-weight:800;letter-spacing:-.025em;line-height:1.12;text-wrap:pretty}
+.quiz__sub{margin-top:10px;font-size:15px;color:var(--f-ink-3)}
+.quiz__opts{display:flex;flex-direction:column;gap:11px;margin-top:26px}
+.quiz__opt{display:flex;align-items:center;gap:15px;width:100%;text-align:left;padding:18px 20px;border-radius:12px;background:rgba(28,30,34,.9);border:1px solid var(--f-line);color:var(--f-ink);font-family:var(--f-font);font-size:17px;font-weight:600;cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s,transform .12s}
+.quiz__opt:hover{border-color:var(--f-g);background:rgba(127,176,105,.1);box-shadow:0 0 0 1px rgba(127,176,105,.35),0 0 28px rgba(127,176,105,.18);transform:translateX(4px)}
+.quiz__opt i{flex:0 0 auto;width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid var(--f-line);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-style:normal;font-size:12px;font-weight:800;color:var(--f-ink-3)}
+.quiz__opt:hover i{color:var(--f-g);border-color:rgba(127,176,105,.55)}
+.quiz__field{margin-top:30px;display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap}
+.quiz__field input,.quiz__field select,.quiz__field textarea{flex:1 1 220px;min-width:0;background:transparent;border:0;border-bottom:1.5px solid rgba(127,176,105,.55);color:var(--f-ink);font-family:var(--f-font);font-size:clamp(18px,2.4vw,23px);padding:10px 2px;transition:border-color .18s}
+.quiz__field textarea{flex:1 1 100%;border:1.5px solid var(--f-line);border-radius:12px;background:rgba(28,30,34,.8);padding:16px;font-size:17px;line-height:1.5;min-height:120px;resize:vertical}
+.quiz__field select{flex:0 0 auto;width:auto;max-width:100%;font-size:17px;cursor:pointer}
+.quiz__field select option{background:#141518;color:#fff}
+.quiz__field input:focus,.quiz__field select:focus,.quiz__field textarea:focus{outline:0;border-color:var(--f-g)}
+.quiz__field ::placeholder{color:var(--f-ink-3)}
+.quiz__foot{margin-top:auto;padding-top:30px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.quiz__back{background:0;border:0;color:var(--f-ink-3);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;cursor:pointer;padding:6px 2px}
+.quiz__back:hover{color:var(--f-ink)}
+.quiz__next{border:0;border-radius:12px;background:var(--f-g);color:#08090A;font-family:var(--f-font);font-size:16px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:17px 30px;cursor:pointer;box-shadow:0 0 0 1px rgba(127,176,105,.6),0 0 30px rgba(127,176,105,.35);transition:box-shadow .2s,transform .12s}
+.quiz__next:hover{box-shadow:0 0 0 1px rgba(180,224,140,.85),0 0 54px rgba(127,176,105,.6);transform:translateY(-1px)}
+.quiz__hint{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--f-ink-3)}
+.quiz__err{margin-top:12px;font-size:14px;color:#D98A8A}
+.quiz__done{text-align:center;display:flex;flex-direction:column;justify-content:center;flex:1;gap:16px}
+.quiz__check{width:66px;height:66px;border-radius:50%;background:rgba(127,176,105,.14);border:1px solid rgba(127,176,105,.5);display:grid;place-items:center;margin:0 auto}
+.quiz__check svg{width:29px;height:29px;stroke:var(--f-g);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.hidden{display:none!important}
+
+body.done .sec:not(#videos),body.done .sticky-cta,body.done [data-sticky-after]{display:none!important}
+#videos{display:none}
+body.done #videos{display:block}
+.vids{max-width:1000px;margin:0 auto;text-align:center}
+.vids__logo{height:clamp(48px,6.4vw,76px);margin:0 auto clamp(30px,5vw,54px);display:block}
+.vids__t{font-size:clamp(26px,4.2vw,42px);font-weight:800;letter-spacing:-.025em;line-height:1.15;margin-bottom:24px;text-wrap:pretty;max-width:900px;margin-inline:auto}
+.vids__t b{color:var(--f-g)}
+.vids .vid{max-width:100%;margin:0 auto;border-color:rgba(127,176,105,.55);box-shadow:0 0 0 1px rgba(127,176,105,.35),0 0 60px rgba(127,176,105,.22),0 30px 90px rgba(0,0,0,.7)}
+.vids .vid img{opacity:.9}
+.vids__block+.vids__block{margin-top:clamp(44px,6vw,76px)}
+.vids__cta{margin-top:clamp(34px,5vw,54px)}
+.vids__cta .btn{display:flex;align-items:center;justify-content:center;gap:16px;width:100%;font-size:clamp(16px,2.4vw,23px);font-weight:800;letter-spacing:.01em;text-transform:uppercase;padding:28px 30px;line-height:1.25;border-radius:14px;box-shadow:0 0 0 1px rgba(127,176,105,.6),0 0 46px rgba(127,176,105,.4),0 20px 70px rgba(127,176,105,.28)}
+.vids__cta .btn:hover{box-shadow:0 0 0 1px rgba(180,224,140,.9),0 0 80px rgba(127,176,105,.7),0 24px 84px rgba(127,176,105,.45)}
+.vids__cta .btn svg{flex:0 0 auto;width:clamp(24px,3vw,32px);height:clamp(24px,3vw,32px);fill:currentColor}
+.vids__note{margin-top:14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:var(--f-ink-3)}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5V6SQC3VV2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5V6SQC3VV2');</script>
+<script>document.addEventListener('DOMContentLoaded',function(){
+document.querySelectorAll('a[href]').forEach(function(a){a.addEventListener('click',function(){
+var h=a.getAttribute('href')||'';var t=(a.textContent||'').trim().slice(0,60);
+if(h.indexOf('whop.com')>-1) gtag('event','checkout_click',{plan:h.indexOf('1awGPEaPXlNfs')>-1?'6meses':'mensual',label:t});
+else if(h.indexOf('calendly')>-1) gtag('event','calendly_click',{label:t});
+else if(h==='#precios') gtag('event','cta_precios',{label:t});
+else if(h.indexOf('Comunidad.html')>-1) gtag('event','hub_comunidad');
+else if(h.indexOf('Mentoria.html')>-1) gtag('event','hub_clase_gratis');
+else if(h.indexOf('youtube')>-1) gtag('event','hub_youtube');
+else if(h.indexOf('app.alexus-lab')>-1) gtag('event','hub_login');
+});});
+document.querySelectorAll('.vid,.vid__lock').forEach(function(v){v.addEventListener('click',function(){gtag('event','video_play',{page:location.pathname});},{once:true});});
+var f=document.querySelector('form');if(f)f.addEventListener('submit',function(){gtag('event','lead_form_submit');});
+var p=document.getElementById('precios');
+if(p&&'IntersectionObserver'in window){var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){gtag('event','view_precios');o.disconnect();}},{threshold:.3});o.observe(p);}
+});</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+
+<section class="sec hero">
+  <div class="wrap wrap--narrow">
+    <img class="hero__logo" src="assets/logo-blanco-sm.png" alt="AlexusLab — Comunidad de trading" />
+    <h1 class="rv in">Te enseño gratis cómo pasé de quemar cuentas a <span class="g">vivir del trading.</span></h1>
+    <p class="lead rv">Una clase de 40 minutos con el sistema completo. Rellena tus datos y la desbloqueas al instante.</p>
+
+    <div class="vid rv" id="vid">
+      <img src="assets/alex-portrait.jpg" alt="Clase gratis de AlexusLab" />
+      <button class="vid__lock" id="vidlock" aria-label="Desbloquear la clase gratis">
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M17.5 9.5h-.8V7.2a4.7 4.7 0 1 0-9.4 0v2.3h-.8A1.7 1.7 0 0 0 4.8 11.2v8A1.7 1.7 0 0 0 6.5 20.9h11a1.7 1.7 0 0 0 1.7-1.7v-8a1.7 1.7 0 0 0-1.7-1.7Zm-8.4-2.3a2.9 2.9 0 1 1 5.8 0v2.3H9.1V7.2Z"/></svg></span>
+        <b>Clase bloqueada · toca para desbloquear</b>
+      </button>
+    </div>
+    <p class="vid__cap rv">40 min · sin coste · sin tarjeta</p>
+
+    <div class="hero__cta btn-stack rv">
+      <a class="btn btn--primary btn--hero" href="#aplicar">Ver la clase gratis ↓</a>
+    </div>
+  </div>
+</section>
+
+<span data-sticky-after></span>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="story">
+      <div class="rv">
+        <div class="kicker">Quién hay detrás</div>
+        <h2 class="h-l">De fisioterapeuta a <span class="g">vivir del trading</span></h2>
+        <p><b>Mi yo del pasado</b> era fisioterapeuta. Terminé la carrera, hice un máster, trabajé en clínica privada y ayudé a más de 100 personas a cambiar su físico. Me gustaba, pero económicamente no avanzaba.</p>
+        <p>Empecé en el trading como casi todos: <b>solo, saltando de estrategia en estrategia y quemando cuentas</b>. Perdí dinero durante meses hasta que entendí que el problema no era la estrategia, era no tener un proceso ni nadie que me corrigiera.</p>
+        <p>Cuando lo construí, todo cambió: <b>pasé fondeos, empecé a retirar y dejé de depender de la suerte.</b></p>
+        <p><b>Si yo lo he hecho, tú puedes hacerlo.</b></p>
+        <a class="btn btn--primary" href="#aplicar">Ver la clase gratis ↓</a>
+      </div>
+      <div class="story__img rv"><img src="assets/alex-historia-3.jpg" alt="Alex, fundador de AlexusLab" /></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap wrap--narrow">
+    <div class="center rv">
+      <div class="kicker">Por qué sigues estancado</div>
+      <h2 class="h-l">Ninguno de estos problemas se arregla con <span class="g">otro curso más</span></h2>
+    </div>
+    <ol class="plist rv">
+      <li><b>Cambias de estrategia cada dos semanas.</b> Nunca le das datos suficientes a ninguna para saber si funciona.</li>
+      <li><b>Operas bien hasta que pierdes dos veces seguidas.</b> Ahí llega el revenge trading y se va el mes entero.</li>
+      <li><b>Pasas el fondeo y lo revientas en la fase real.</b> El problema no es técnico, es de gestión y de cabeza.</li>
+      <li><b>Nadie revisa lo que haces.</b> Sin un ojo externo repites el mismo error durante meses sin verlo.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap center rv" style="margin-bottom:30px">
+    <div class="kicker">Certificados de fondeo</div>
+    <h2 class="h-l">Resultados de los miembros <span class="g">de la comunidad</span></h2>
+    <p class="lead" style="max-width:620px;margin:14px auto 0">Esto es una consecuencia de hacer las cosas bien, no en lo que hay que enfocarse el día a día.</p>
+  </div>
+  <div class="wrap">
+    <div class="dips rv">
+      <div class="dip"><div class="dip__img"><img src="assets/proof-6.jpg" alt="Certificado FTMO" /></div><div class="dip__cap"><b>FTMO</b><span>Verificación superada</span></div></div>
+      <div class="dip"><div class="dip__img"><img src="assets/proof-7.jpg" alt="Certificado Orion Funded" /></div><div class="dip__cap"><b>Orion Funded</b><span>Cuenta fondeada</span></div></div>
+      <div class="dip"><div class="dip__img"><img src="assets/proof-8.jpg" alt="Certificado Lucid Trading 50K" /></div><div class="dip__cap"><b>Lucid Trading</b><span>50K fondeada</span></div></div>
+      <div class="dip"><div class="dip__img"><img src="assets/proof-2.jpg" alt="Certificado de retiro Tradeify" /></div><div class="dip__cap"><b>Tradeify</b><span>Retiro de 3.000 $</span></div></div>
+      <div class="dip"><div class="dip__img"><img src="assets/proof-12.jpg" alt="Certificado de retiro Topstep" /></div><div class="dip__cap"><b>Topstep</b><span>Retiro de 1.500 $</span></div></div>
+      <div class="dip"><div class="dip__img"><img src="assets/proof-9.jpg" alt="Certificado de retiro TickTick Trader" /></div><div class="dip__cap"><b>TickTick Trader</b><span>Retiro de 1.200 $</span></div></div>
+    </div>
+    <div class="band">
+      <div class="wrap band__in">
+        <p>El siguiente certificado puede ser el tuyo.</p>
+        <a class="btn btn--primary" href="#aplicar">Ver la clase gratis ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="aplicar">
+  <div class="wrap">
+    <div class="center rv" style="margin-bottom:30px">
+      <h2 class="h-xl">Rellena tus datos<br />para desbloquear la <span class="g">clase gratis</span></h2>
+      <p class="lead" style="margin-top:14px">6 preguntas rápidas. Al terminar se desbloquea la clase entera, sin coste.</p>
+    </div>
+    <div class="quiz rv">
+      <div class="quiz__box">
+        <div class="quiz__bar"><i id="qbar" style="width:8%"></i></div>
+        <div id="qbody"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="videos">
+  <div class="wrap">
+    <div class="vids">
+      <img class="vids__logo" src="assets/logo-blanco-sm.png" alt="AlexusLab" />
+      <div class="vids__block">
+        <h2 class="vids__t"><b>Vídeo 1:</b> Esto es lo que me hizo click para ser rentable</h2>
+        <div class="vid" data-yt="FVJgaWBEhdk">
+          <img src="assets/alex-portrait.jpg" alt="Vídeo 1" />
+          <button class="vid__lock" aria-label="Reproducir el vídeo 1"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button>
+        </div>
+      </div>
+      <div class="vids__block">
+        <h2 class="vids__t"><b>Vídeo 2:</b> (Guía) El sistema completo para mantener cuentas de fondeo y construir tu capital personal</h2>
+        <div class="vid" data-yt="FVJgaWBEhdk">
+          <img src="assets/alex-historia-3.jpg" alt="Vídeo 2" />
+          <button class="vid__lock" aria-label="Reproducir el vídeo 2"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button>
+        </div>
+        <div class="vids__cta">
+          <a class="btn btn--primary" id="ctacall" href="https://calendly.com/alexmoreno/15min" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 16H5V10h14v10Zm0-12H5V6h14v2Z"/><path d="M11.2 17.4 8 14.2l1.4-1.4 1.8 1.8 3.9-3.9 1.4 1.4-5.3 5.3Z"/></svg>¿Te han quedado dudas? Reserva tu llamada conmigo</a>
+          <p class="vids__note">Videollamada de 30 min, gratis y sin compromiso</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <nav class="foot__links">
+      <a href="index.html">Inicio</a>
+      <a href="Comunidad.html">Comunidad</a>
+      <a href="privacidad.html">Política de privacidad</a>
+      <a href="terminos.html">Términos de uso</a>
+      <a href="condiciones.html">Condiciones de acceso</a>
+    </nav>
+    <div class="foot__c">© 2026 ALEXUSLAB</div>
+    <p class="foot__legal">El trading con instrumentos apalancados conlleva un alto riesgo de pérdida. Los resultados mostrados son individuales y no garantizan resultados futuros. Este sitio no forma parte de Meta Platforms, Inc. ni está avalado por ella.</p>
+  </div>
+</footer>
+
+<div class="sticky-cta"><a class="btn btn--primary" href="#aplicar">Ver la clase gratis</a></div>
+
+<script src="funnel.js"></script>
+<script>
+// === Aquí te llegan los leads: crea una cuenta gratis en https://formspree.io y pega tu endpoint ===
+var FORM_ENDPOINT = "https://formspree.io/f/xoeabpzd";
+var YT_ID = "FVJgaWBEhdk";
+
+var STEPS = [
+  {t:"opt", q:"¿Cuánto tiempo llevas operando?", s:"Sé sincero, esto define si puedo ayudarte.", o:["Todavía no he empezado","Menos de 1 año","Entre 1 y 3 años","Más de 3 años"]},
+  {t:"text", k:"nombre", q:"¿Cómo te llamas?", s:"Tu nombre y apellido.", ph:"Escribe tu nombre aquí…"},
+  {t:"email", k:"email", q:"¿A qué email te envío la clase?", s:"Revisa que esté bien escrito.", ph:"tunombre@email.com"},
+  {t:"area", k:"motivo", q:"¿Cuál es tu situación ahora mismo?", s:"Sé honesto. Esto lo leo yo.", ph:"Cuéntame dónde estás y qué quieres conseguir…"},
+  {t:"opt", q:"¿Cuánto puedes invertir en resolver esto?", s:"La clase es gratis. Esto es para saber si encajas en la mentoría.", o:["Menos de 300 €","Entre 300 y 700 €","Entre 700 y 1.200 €","Más de 1.200 € si veo que funciona"]},
+  {t:"tel", k:"telefono", q:"Por último, ¿tu teléfono?", s:"Elige tu prefijo y escribe tu número."}
+];
+var PREF = ["ES España (+34)","MX México (+52)","AR Argentina (+54)","CO Colombia (+57)","CL Chile (+56)","PE Perú (+51)","US Estados Unidos (+1)","Otro país"];
+
+(function(){
+  var body=document.getElementById('qbody'),bar=document.getElementById('qbar');
+  var i=0,data={};
+
+  function playVid(el){
+    el.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+(el.dataset.yt||YT_ID)+'?autoplay=1&rel=0" title="AlexusLab" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+    el.style.cursor='default';
+  }
+  document.querySelectorAll('#videos .vid').forEach(function(v){
+    v.addEventListener('click',function(){playVid(v);},{once:true});
+  });
+
+  function done(){
+    document.body.classList.add('done');
+    try{localStorage.setItem('al_clase','1');}catch(e){}
+    window.scrollTo(0,0);
+  }
+  try{if(/[?&](nuevo|reset)/.test(location.search)) localStorage.removeItem('al_clase');
+  else if(localStorage.getItem('al_clase')==='1') document.body.classList.add('done');}catch(e){}
+
+  document.getElementById('vidlock').addEventListener('click',function(){location.hash='#aplicar';});
+
+  function foot(label){
+    return '<div class="quiz__foot">'+(i>0?'<button class="quiz__back" id="qback">← Atrás</button>':'')+
+      '<button class="quiz__next" id="qnext">'+label+' →</button>'+
+      '<span class="quiz__hint">pulsa Enter ↵</span></div>';
+  }
+
+  function render(){
+    bar.style.width=Math.round(8+(i/STEPS.length)*92)+'%';
+    if(i>=STEPS.length){
+      bar.style.width='100%';
+      body.innerHTML='<div class="quiz__done"><div class="quiz__check"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>'+
+        '<div class="quiz__q">Solicitud enviada.</div>'+
+        '<p class="lead">Te llevo a la clase en un segundo…</p></div>';
+      setTimeout(done,900);
+      return;
+    }
+    var st=STEPS[i],head='<div class="quiz__n">'+String(i+1).padStart(2,'0')+' <span>→ '+String(STEPS.length).padStart(2,'0')+'</span></div>'+
+      '<div class="quiz__q">'+st.q+'</div>'+(st.s?'<div class="quiz__sub">'+st.s+'</div>':'');
+
+    if(st.t==='opt'){
+      body.innerHTML=head+'<div class="quiz__opts">'+st.o.map(function(o,n){
+        return '<button class="quiz__opt" data-v="'+n+'"><i>'+String.fromCharCode(65+n)+'</i>'+o+'</button>';}).join('')+'</div>'+
+        (i>0?'<div class="quiz__foot"><button class="quiz__back" id="qback">← Atrás</button></div>':'');
+      body.querySelectorAll('.quiz__opt').forEach(function(b){
+        b.onclick=function(){data['P'+(i+1)+' '+st.q]=st.o[+b.dataset.v];i++;render();};
+      });
+    } else if(st.t==='tel'){
+      body.innerHTML=head+'<div class="quiz__field">'+
+        '<select id="qpref">'+PREF.map(function(p){return '<option>'+p+'</option>';}).join('')+'</select>'+
+        '<input id="qin" type="tel" inputmode="tel" placeholder="600 000 000" value="'+(data.telefono||'')+'" />'+
+        '</div>'+foot('Enviar')+'<div class="quiz__err hidden" id="qerr"></div>';
+      wire(function(v){
+        if(v.replace(/\D/g,'').length<6) return 'Escribe un número de teléfono válido.';
+        data.telefono=document.getElementById('qpref').value.match(/\(([^)]+)\)/) ? document.getElementById('qpref').value.match(/\(([^)]+)\)/)[1]+' '+v : v;
+        send();return null;
+      });
+    } else {
+      var tag = st.t==='area'
+        ? '<textarea id="qin" placeholder="'+st.ph+'">'+(data[st.k]||'')+'</textarea>'
+        : '<input id="qin" type="'+(st.t==='email'?'email':'text')+'" placeholder="'+st.ph+'" value="'+(data[st.k]||'')+'" />';
+      body.innerHTML=head+'<div class="quiz__field">'+tag+'</div>'+foot('Siguiente')+'<div class="quiz__err hidden" id="qerr"></div>';
+      wire(function(v){
+        if(st.t==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) return 'Ese email no parece correcto.';
+        if(v.trim().length<2) return 'Rellena este campo para continuar.';
+        data[st.k]=v.trim();i++;render();return null;
+      });
+    }
+    var back=document.getElementById('qback');
+    if(back) back.onclick=function(){if(i>0){i--;render();}};
+  }
+
+  function wire(check){
+    var input=document.getElementById('qin'),next=document.getElementById('qnext'),err=document.getElementById('qerr');
+    input.focus();
+    function go(){
+      var msg=check(input.value);
+      if(msg){err.textContent=msg;err.classList.remove('hidden');}
+    }
+    next.onclick=go;
+    input.addEventListener('keydown',function(e){
+      if(e.key==='Enter'&&(input.tagName!=='TEXTAREA'||e.metaKey||e.ctrlKey)){e.preventDefault();go();}
+    });
+  }
+
+  function send(){
+    var next=document.getElementById('qnext');
+    if(next){next.textContent='Enviando…';next.disabled=true;}
+    data._subject='Nuevo lead clase gratis — '+(data.nombre||'sin nombre');
+    fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)})
+      .then(function(){i=STEPS.length;render();})
+      .catch(function(){i=STEPS.length;render();});
+  }
+  render();
+})();
+</script>
+</body>
+</html>
