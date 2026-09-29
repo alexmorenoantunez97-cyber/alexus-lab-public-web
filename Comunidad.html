@@ -27,13 +27,14 @@
 .ph{position:relative;width:100%;aspect-ratio:16/10;border-radius:13px;border:1px dashed rgba(127,176,105,.45);background:rgba(20,21,24,.7);display:grid;place-items:center;text-align:center;padding:24px}
 .ph span{font-size:13.5px;line-height:1.5;color:var(--f-ink-3);max-width:280px}
 
-.vid{position:relative;margin:14px auto 0;max-width:min(560px,calc(30svh * 16 / 9));border-radius:14px;overflow:hidden;border:1px solid rgba(127,176,105,.5);box-shadow:0 26px 80px rgba(0,0,0,.65);aspect-ratio:16/9;background:#0E0F11}
+.vid{position:relative;margin:14px auto 0;max-width:min(560px,calc(34svh * 16 / 9));border-radius:14px;overflow:hidden;border:1px solid rgba(127,176,105,.5);box-shadow:0 26px 80px rgba(0,0,0,.65);aspect-ratio:16/9;background:#0E0F11}
 .vid img,.vid iframe{width:100%;height:100%;display:block;border:0}
 .vid img{object-fit:cover}
-.vid__play{position:absolute;inset:0;display:grid;place-items:center;background:rgba(5,6,7,.28);border:0;cursor:pointer;padding:0}
-.vid__play span{width:66px;height:66px;border-radius:50%;background:var(--f-g);display:grid;place-items:center;box-shadow:0 12px 44px rgba(127,176,105,.5);transition:transform .2s ease}
+.vid__play{position:absolute;inset:0;display:grid;place-items:end center;background:transparent;border:0;cursor:pointer;padding:0 0 12% 34%;transition:background .2s ease}
+.vid__play:hover{background:rgba(5,6,7,.12)}
+.vid__play span{width:clamp(44px,9vw,62px);height:clamp(44px,9vw,62px);border-radius:50%;background:var(--f-g);display:grid;place-items:center;box-shadow:0 12px 44px rgba(127,176,105,.5);transition:transform .2s ease}
 .vid__play:hover span{transform:scale(1.07)}
-.vid__play svg{width:26px;height:26px;fill:#08090A;margin-left:4px}
+.vid__play svg{width:42%;height:42%;fill:#08090A;margin-left:4px}
 .vid__cap{margin-top:8px;font-size:12.5px;color:var(--f-ink-3)}
 
 .band{padding:26px 0;text-align:center}
@@ -198,9 +199,10 @@ if(p&&'IntersectionObserver'in window){var o=new IntersectionObserver(function(e
     <p class="lead rv" style="display:none">Mira en 4 minutos qué es AlexusLab y cómo funciona por dentro.</p>
 
     <div class="vid rv" id="vid">
-      <iframe src="https://player.mediadelivery.net/embed/734902/4c83245b-fe1c-48f5-9f81-64111cf9ed1e?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" title="Qué es AlexusLab" loading="eager" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" allowfullscreen="true"></iframe>
+      <img src="assets/video-cover.jpg" alt="Así funciona AlexusLab" width="1280" height="720" fetchpriority="high" />
+      <button class="vid__play" type="button" aria-label="Reproducir vídeo"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button>
     </div>
-    <p class="vid__cap rv">Qué es la comunidad y cómo funciona · 4 min</p>
+    <p class="vid__cap rv">Qué es la comunidad y cómo funciona · 4 min · <a href="https://youtu.be/FVJgaWBEhdk" target="_blank" rel="noopener">¿No carga? Ábrelo aquí</a></p>
     <div class="hero__cta btn-stack rv">
       <a class="btn btn--primary btn--hero" href="#precios">Quiero entrar y ser trader ↓</a>
       <div class="risk"><span><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Pago seguro</span><span><svg viewBox="0 0 24 24"><path d="m20 6-11 11-5-5"/></svg>Acceso en 2 min</span><span><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>Cancelas en 1 clic</span></div>
@@ -535,7 +537,14 @@ if(p&&'IntersectionObserver'in window){var o=new IntersectionObserver(function(e
 <script>
 (function(){
   var v=document.getElementById('vid');
-  if(v)v.addEventListener('click',function(){gtag('event','video_play',{page:location.pathname});},{once:true});
+  if(v)v.addEventListener('click',function(){
+    var f=document.createElement('iframe');
+    f.src='https://www.youtube-nocookie.com/embed/FVJgaWBEhdk?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+    f.title='Qué es AlexusLab';f.referrerPolicy='strict-origin-when-cross-origin';
+    f.allow='accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share;fullscreen';f.allowFullscreen=true;
+    v.innerHTML='';v.appendChild(f);v.style.cursor='default';
+    try{gtag('event','video_play',{page:location.pathname});}catch(e){}
+  },{once:true});
 })();
 (function(){
   var m=document.getElementById('exit'),shown=false,armed=false;
