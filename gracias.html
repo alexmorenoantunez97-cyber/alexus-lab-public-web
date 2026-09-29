@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Bienvenido a la sala — AlexusLab</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<meta name="theme-color" content="#050607" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600;700;800&display=swap" />
+<link rel="stylesheet" href="funnel.css" />
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+(function(){var c=null;try{c=localStorage.getItem('al_consent')}catch(e){}var g=c==='yes'?'granted':'denied';
+gtag('consent','default',{analytics_storage:g,ad_storage:g,ad_user_data:g,ad_personalization:g});})();
+gtag('js',new Date());gtag('config','G-5V6SQC3VV2');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5V6SQC3VV2"></script>
+<style>
+.ok{min-height:100svh;display:flex;align-items:center;padding:40px 0}
+.ok__box{max-width:560px;margin:0 auto;text-align:center}
+.ok__logo{height:48px;margin:0 auto 30px;display:block}
+.ok h1{font-size:clamp(30px,5vw,46px);margin-bottom:14px}
+.ok .lead{margin-bottom:28px}
+.steps{list-style:none;counter-reset:s;padding:0;margin:0 0 28px;text-align:left;display:grid;gap:10px}
+.steps li{counter-increment:s;position:relative;padding:16px 18px 16px 58px;border:1px solid var(--f-line);border-radius:12px;background:rgba(20,21,24,.85);font-size:16px;line-height:1.5;color:var(--f-ink-2)}
+.steps li::before{content:counter(s);position:absolute;left:18px;top:15px;width:26px;height:26px;border-radius:50%;background:var(--f-g);color:#08090A;font-weight:800;font-size:14px;display:grid;place-items:center}
+.steps b{color:var(--f-ink)}
+.ok__help{margin-top:16px;font-size:14px;color:var(--f-ink-3)}
+</style>
+</head>
+<body>
+<main class="ok">
+  <div class="wrap ok__box">
+    <img class="ok__logo" src="assets/logo-blanco-sm.png" alt="AlexusLab" />
+    <h1>Ya estás dentro. <span class="g">Bienvenido a la sala.</span></h1>
+    <p class="lead">En 3 pasos lo tienes todo listo:</p>
+    <ol class="steps">
+      <li><b>Abre tu email.</b> Te acaba de llegar el acceso. Si no lo ves en 2 minutos, mira en spam o promociones.</li>
+      <li><b>Entra al Discord</b> desde el enlace del email y preséntate en el canal de bienvenida.</li>
+      <li><b>Abre la plataforma</b> desde el Discord y empieza por el primer módulo. Te veo en el directo a las 15:30 h (España).</li>
+    </ol>
+    <a class="btn btn--primary" href="https://app.alexus-lab.com/">Ir a la plataforma</a>
+    <p class="ok__help">¿Algún problema con el acceso? <a href="https://ig.me/m/alexus.trader" target="_blank" rel="noopener">Escríbeme por Instagram</a>.</p>
+  </div>
+</main>
+<script src="funnel.js"></script>
+<script>
+// Configura en Whop la URL de redirección tras el pago:
+//   plan mensual  → https://www.alexus-lab.com/gracias.html?plan=mensual
+//   plan 6 meses  → https://www.alexus-lab.com/gracias.html?plan=6meses
+(function(){
+  var plan=(location.search.match(/[?&]plan=([^&]+)/)||[])[1]||'desconocido';
+  var value=plan==='6meses'?210:(plan==='mensual'?49.99:0);
+  var key='al_purchase_'+plan;
+  try{if(sessionStorage.getItem(key))return;sessionStorage.setItem(key,'1');}catch(e){}
+  alTrack('purchase',{plan:plan,value:value,currency:'EUR',transaction_id:plan+'-'+Date.now()});
+})();
+</script>
+</body>
+</html>

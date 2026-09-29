@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    { "source": "/comunidad", "destination": "/Comunidad.html" },
+    { "source": "/mentoria", "destination": "/Mentoria.html" },
+    { "source": "/clase", "destination": "/Mentoria.html" },
+    { "source": "/gracias", "destination": "/gracias.html" }
+  ],
+  "headers": [
+    { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] },
+    { "source": "/(funnel.css|funnel.js|favicon.svg)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] }
+  ]
+}
