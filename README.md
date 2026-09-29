@@ -9,6 +9,10 @@ Sitio estático. No hay que compilar nada: se sube tal cual (Vercel o GitHub Pag
 - `gracias.html` — página tras el pago (mide la compra y explica cómo acceder).
 - `aviso-legal.html`, `privacidad.html`, `cookies.html`, `terminos.html`, `condiciones.html` — legal.
 
+## AL SUBIR: sube TODAS las carpetas
+`assets/` (imágenes y logos) y `api/` (función que muestra el último vídeo de YouTube en el hub) deben subirse enteras.
+Si usas la web de GitHub, arrastra la carpeta completa, no solo los archivos sueltos.
+
 ## ANTES DE PUBLICAR
 1. Rellena `[RAZÓN SOCIAL]`, `[NIF]`, `[DIRECCIÓN COMPLETA]` y `[EMAIL DE CONTACTO]` en:
    `aviso-legal.html`, `privacidad.html`, `terminos.html`, `condiciones.html`, `cookies.html`.
