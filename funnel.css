@@ -415,3 +415,4 @@ p{margin:0}
 .yt-row__t b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:3px;font-size:14px;line-height:1.3}
 @media(min-width:720px){.hub .hero{margin-top:60px;border-radius:28px;height:340px}.hub .ann{top:12px}}
 .ti .pill__i{display:grid;margin-top:0;color:inherit}
+.hub .foot__soc a:not(:last-child){display:none}

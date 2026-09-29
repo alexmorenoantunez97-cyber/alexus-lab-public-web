@@ -25,7 +25,9 @@ var META_PIXEL_ID = '';
     '<div class="ck__b"><button type="button" data-ck="no">Rechazar</button><button type="button" data-ck="yes">Aceptar</button></div>';
   document.body.appendChild(banner);
   banner.querySelectorAll('[data-ck]').forEach(function (b) { b.onclick = function () { setConsent(b.getAttribute('data-ck')); }; });
-  if (!consent()) banner.classList.add('on'); else if (consent() === 'yes') loadPixel();
+  // Sin aviso automático: por defecto no se instalan cookies de analítica ni publicidad (GA4 mide sin cookies).
+  // El usuario puede activarlas desde la página de Cookies (botón data-cookie-settings).
+  if (consent() === 'yes') loadPixel();
   document.querySelectorAll('[data-cookie-settings]').forEach(function (b) { b.onclick = function () { banner.classList.add('on'); }; });
 
   // ---------- medición ----------
