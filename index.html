@@ -25,6 +25,7 @@ gtag('consent','default',{analytics_storage:g,ad_storage:g,ad_user_data:g,ad_per
 gtag('js',new Date());gtag('config','G-5V6SQC3VV2');</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5V6SQC3VV2"></script>
 <style>
+.hub__name{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--f-g);margin-bottom:2px}
 .hub__handle{font-weight:800;letter-spacing:-.04em}
 .hub__sub{color:#E4E3DD}
 .soc{display:flex;justify-content:center;gap:10px}
@@ -42,8 +43,9 @@ gtag('js',new Date());gtag('config','G-5V6SQC3VV2');</script>
   <section class="hero">
     <div class="hero__bg"><img src="assets/hub-hero.jpg" alt="Alex, fundador de AlexusLab" width="1000" height="1000" fetchpriority="high" style="object-position:22% 28%" /></div>
     <div class="hero__c">
+      <div class="hub__name">Alex Moreno</div>
       <div class="hub__handle">@alexus.trader</div>
-      <p class="hub__sub">Trading de futuros · del fondeo al capital real</p>
+      <p class="hub__sub">Te ayudo a dar un proceso a tu trading</p>
       <div class="soc">
         <a href="https://www.instagram.com/alexus.trader/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></a>
         <a href="https://youtube.com/@alexus.trader" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="m10 9 5 3-5 3z" fill="currentColor"/></svg></a>
@@ -65,11 +67,6 @@ gtag('js',new Date());gtag('config','G-5V6SQC3VV2');</script>
     </a>
   </nav>
 
-  <a class="yt-card" id="ytrow" href="https://youtube.com/@alexus.trader" target="_blank" rel="noopener">
-    <span class="yt-card__th"><span class="yt-card__ph"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="m10 9 5 3-5 3z" fill="currentColor"/></svg></span><img id="ytimg" alt="" hidden /><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span>
-    <span class="yt-card__t"><small>Último vídeo · YouTube</small><b id="yttitle">Un vídeo nuevo cada semana en mi canal</b></span>
-  </a>
-
   <a class="members" href="https://app.alexus-lab.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Acceso a la plataforma (miembros)</a>
 </main>
 
@@ -87,17 +84,5 @@ gtag('js',new Date());gtag('config','G-5V6SQC3VV2');</script>
   </div>
 </footer>
 <script src="funnel.js"></script>
-<script>
-// Último vídeo del canal: portada y título reales (función de Vercel /api/ultimo-video).
-// Si la función no responde, se queda el enlace genérico al canal.
-fetch('/api/ultimo-video').then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(v){
-  if(!v||!v.id)return;
-  var img=document.getElementById('ytimg');
-  img.src='https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg';img.hidden=false;
-  document.getElementById('yttitle').textContent=v.title;
-  document.getElementById('ytrow').href='https://www.youtube.com/watch?v='+v.id;
-}).catch(function(){});
-document.getElementById('ytrow').addEventListener('click',function(){alTrack('video_play',{page:'hub',video:'ultimo'});});
-</script>
 </body>
 </html>
