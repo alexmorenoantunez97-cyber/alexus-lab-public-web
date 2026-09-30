@@ -419,7 +419,7 @@ p{margin:0}
 
 /* ===== HUB v3: cara libre, contenido abajo, primera pantalla hasta CLASE GRATIS ===== */
 .hub .hero{height:calc(100svh - 178px);min-height:420px;max-height:780px}
-.hub .hero__bg img{object-position:24% 18%!important}
+.hub .hero__bg img{object-position:37% 20%!important}
 .hub .hero__bg::after{background:linear-gradient(180deg,rgba(5,6,7,.45) 0%,rgba(5,6,7,0) 18%,rgba(5,6,7,0) 50%,rgba(5,6,7,.78) 78%,#050607 100%)}
 .hub .hero__c{padding-bottom:16px}
 .hub__handle{font-size:clamp(32px,8.6vw,44px)!important;text-shadow:0 4px 30px rgba(0,0,0,.6)}
