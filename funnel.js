@@ -110,3 +110,27 @@ var META_PIXEL_ID = '';
     });
   }
 })();
+
+// ---------- reproductor de vídeo (YouTube con portada propia) ----------
+// alVideo(caja): la caja lleva data-yt="ID". Opcional: data-teaser="assets/teaser.mp4" (clip corto en silencio
+// que se reproduce en bucle hasta que pulsan; al pulsar arranca el vídeo de YouTube desde el principio con sonido).
+window.alVideo = function (box) {
+  if (!box) return;
+  var id = box.getAttribute('data-yt'), frame = box.querySelector('.vp__frame'), msg = box.querySelector('.vp__msg');
+  var teaser = box.getAttribute('data-teaser'), on = false;
+  function play() {
+    if (on) return; on = true;
+    box.classList.remove('vp--live'); box.classList.add('vp--on');
+    frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&color=white" title="Vídeo AlexusLab" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+    if (window.alTrack) alTrack('video_play', { page: location.pathname, video: id });
+  }
+  box.querySelector('.vp__btn').addEventListener('click', play);
+  var slow = navigator.connection && (navigator.connection.saveData || /2g/.test(navigator.connection.effectiveType || ''));
+  if (teaser && !slow) {
+    var v = document.createElement('video');
+    v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true; v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
+    v.preload = 'auto'; v.src = teaser;
+    v.addEventListener('playing', function () { if (!on) { box.classList.add('vp--live'); if (msg) msg.textContent = 'El vídeo ha empezado · Pulsa para escuchar'; } });
+    frame.appendChild(v);
+  }
+};

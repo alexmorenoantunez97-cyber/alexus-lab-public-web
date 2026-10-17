@@ -18,12 +18,12 @@ Compartido: `funnel.css`, `funnel.js`, `favicon.svg`, `vercel.json` y la carpeta
 - `CALL_EXPERIENCE = [0]` → "Todavía no he empezado" ve el Calendly con cualquier presupuesto (email: 🟡 Principiante → llamada).
 - El resto ve la comunidad + dudas por Instagram o email (email: Lead clase gratis).
 - `FORM_ENDPOINT` (Formspree) y `CALENDLY_URL`.
-- `CLASE`: IDs de YouTube y títulos de los 2 vídeos. **Cuando grabes los vídeos cambia los IDs.**
+- `CLASE`: IDs de YouTube y títulos de los 2 vídeos (ahora: KcEoAtbTd-g «Esto es lo que me hizo click» y eBPSu7qbG-0 «Los 3 pilares»). Vídeo de la comunidad: N1Fw2hWB9GY, en el script del final de `Comunidad.html`.
   Si cambias los títulos, cámbialos también en el bloque "Qué vas a ver" de la misma página.
 - Para volver a ver el formulario tras rellenarlo: `/Mentoria.html?nuevo`.
 
 ## Otros ajustes
-- **Testimonios** (`Comunidad.html`): sección `id="testimonios"` oculta con `hidden`. Añade las tarjetas y quita `hidden` cuando tengas material autorizado.
+- **Testimonios y certificados** (`Comunidad.html`, sección `id="resultados"`): tarjeta destacada de Luischeno + carrusel de certificados + 5 mensajes del Discord. Quita la tarjeta de quien no dé permiso.
 - **Píxel de Meta**: `funnel.js` → `META_PIXEL_ID`. Solo se carga si el usuario acepta cookies en la página de Cookies (no hay aviso automático).
 - **Whop**: si tu plan lo permite, redirección tras el pago a `/gracias.html?plan=mensual` y `/gracias.html?plan=6meses`.
 - **GA4** `G-5V6SQC3VV2`, sin cookies por defecto. Marca como eventos clave: `generate_lead`, `calendly_booked`, `checkout_click`, `purchase`.
