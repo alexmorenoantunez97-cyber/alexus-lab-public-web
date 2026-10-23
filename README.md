@@ -18,7 +18,7 @@ Compartido: `funnel.css`, `funnel.js`, `favicon.svg`, `vercel.json` y la carpeta
 - `CALL_EXPERIENCE = [0]` → "Todavía no he empezado" ve el Calendly con cualquier presupuesto (email: 🟡 Principiante → llamada).
 - El resto ve la comunidad + dudas por Instagram o email (email: Lead clase gratis).
 - `FORM_ENDPOINT` (Formspree) y `CALENDLY_URL`.
-- `CLASE`: IDs de YouTube y títulos de los 2 vídeos (ahora: KcEoAtbTd-g «Esto es lo que me hizo click» y eBPSu7qbG-0 «Los 3 pilares»). Vídeo de la comunidad: N1Fw2hWB9GY, en el script del final de `Comunidad.html`.
+- `CLASE`: IDs de YouTube y títulos de los 2 vídeos (ahora: KcEoAtbTd-g «Esto es lo que me hizo click» y eBPSu7qbG-0 «Los 3 pilares»). Vídeo de la comunidad: AhtcN9Y61yY, en el script del final de `Comunidad.html`.
   Si cambias los títulos, cámbialos también en el bloque "Qué vas a ver" de la misma página.
 - Para volver a ver el formulario tras rellenarlo: `/Mentoria.html?nuevo`.
 

@@ -394,8 +394,9 @@ var PREF = ["ES España (+34)","MX México (+52)","AR Argentina (+54)","CO Colom
     if(/[?&](nuevo|reset)/.test(location.search)) localStorage.removeItem('al_lead');
     else saved=JSON.parse(localStorage.getItem('al_lead')||'null');
   }catch(e){}
-  // ?ver → muestra los vídeos directamente, sin cuestionario (enlace para compartir)
-  if(/[?&]ver(=|&|$)/.test(location.search)) showResult({n:'',e:'',b:-1,x:-1});
+  // ?ver → vídeos + comunidad sin cuestionario · ?ver=llamada → vídeos + Calendly (para revisar cómo lo ve un lead cualificado)
+  if(/[?&]ver=llamada/.test(location.search)) showResult({n:'',e:'',b:CALL_BUDGET[0],x:-1});
+  else if(/[?&]ver(=|&|$)/.test(location.search)) showResult({n:'',e:'',b:-1,x:-1});
   else if(saved&&saved.n) showResult(saved); else render();
 })();
 </script>
