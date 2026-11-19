@@ -2,7 +2,7 @@
 
 // === CONFIGURACIÓN ===
 // Pega aquí el ID de tu píxel de Meta (Administrador de eventos → Orígenes de datos). Vacío = no se carga.
-var META_PIXEL_ID = '';
+var META_PIXEL_ID = '1173051938411775';
 
 (function () {
   // ---------- consentimiento de cookies + píxel ----------
@@ -28,6 +28,7 @@ var META_PIXEL_ID = '';
   // Sin aviso automático: por defecto no se instalan cookies de analítica ni publicidad (GA4 mide sin cookies).
   // El usuario puede activarlas desde la página de Cookies (botón data-cookie-settings).
   if (consent() === 'yes') loadPixel();
+  else if (!consent() && META_PIXEL_ID) setTimeout(function () { banner.classList.add('on'); }, 1200); // primera visita: pedir permiso
   document.querySelectorAll('[data-cookie-settings]').forEach(function (b) { b.onclick = function () { banner.classList.add('on'); }; });
 
   // ---------- medición ----------
