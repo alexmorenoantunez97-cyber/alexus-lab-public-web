@@ -603,3 +603,7 @@ h1,h2,h3{font-weight:700;letter-spacing:-.025em;line-height:1.12}
 .proof__av i:nth-child(4){background:linear-gradient(135deg,#8C6BC2,#5D4590)}
 .proof__av i:nth-child(5){background:linear-gradient(135deg,#C2615B,#8E3D38)}
 .proof__av i:first-child{margin-left:0}
+
+/* cabecera: logo a la izquierda, botón a la derecha */
+.top__in--lr{display:flex!important;justify-content:space-between;align-items:center;gap:12px}
+.top__in--lr .top__logo{height:24px!important;width:auto}
